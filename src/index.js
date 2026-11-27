@@ -9,7 +9,7 @@ const HISTORY_KEEP_SEC = 2 * 86400;
 const RATES_TTL = 600;
 
 const ASSET_TABLE = 'siteasset';
-const MINER_TABLE = 'miner';
+const MINER_TABLE = 'pool_logos';
 const ASSET_AGE = 604800;
 const SITE_DEFAULT = 'mempool.my.id';
 const siteName = (env) => {
@@ -360,7 +360,7 @@ async function tableName(env, kind, def) {
   try {
     const r = await db(env).prepare("SELECT name FROM sqlite_master WHERE type = 'table'").all();
     const names = (r.results || []).map((x) => x.name);
-    const re = kind === 'miner' ? /miner/i : /asset/i;
+    const re = kind === 'miner' ? /miner|logo/i : /asset/i;
     pick = names.find((n) => n === def) || names.find((n) => re.test(n)) || def;
   } catch (e) {}
   tblMemo[kind] = '"' + String(pick).replace(/"/g, '""') + '"';
@@ -374,6 +374,7 @@ function b64bytes(s) {
   return out;
 }
 
+// LOGO_V2
 const LOGO_RETRY = 86400;
 const LOGO_MAX = 300000;
 const logoMiss = new Map();
@@ -390,6 +391,29 @@ async function poolKnown(slug) {
 
 const validSvg = (t) => t.length > 40 && t.length <= LOGO_MAX && /<svg[\s>]/i.test(t) && !/<script|<foreignObject|\son[a-z]+\s*=|<!doctype html/i.test(t);
 
+async function pullLogo(u) {
+  try {
+    const res = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'image/*' }, signal: AbortSignal.timeout(5000) });
+    if (!res.ok) return null;
+    const buf = new Uint8Array(await res.arrayBuffer());
+    if (!buf.length || buf.length > LOGO_MAX) return null;
+    const head = String.fromCharCode.apply(null, buf.subarray(0, 8));
+    let mime = '';
+    if (head.indexOf('\x89PNG') === 0) mime = 'image/png';
+    else if (head.indexOf('\xff\xd8\xff') === 0) mime = 'image/jpeg';
+    else if (head.indexOf('GIF8') === 0) mime = 'image/gif';
+    else if (head.indexOf('RIFF') === 0) mime = 'image/webp';
+    else if (validSvg(new TextDecoder().decode(buf))) mime = 'image/svg+xml';
+    return mime ? { buf, mime } : null;
+  } catch (e) { return null; }
+}
+
+const bytesB64 = (u8) => {
+  let s = '';
+  for (let i = 0; i < u8.length; i += 8192) s += String.fromCharCode.apply(null, u8.subarray(i, i + 8192));
+  return btoa(s);
+};
+
 async function fetchMinerLogo(env, slug) {
   if (logoJobs.has(slug)) return logoJobs.get(slug);
   const job = (async () => {
@@ -397,29 +421,30 @@ async function fetchMinerLogo(env, slug) {
     if (miss && Date.now() - miss < 3600000) return null;
     const tbl = await tableName(env, 'miner', MINER_TABLE);
     const now = Math.floor(Date.now() / 1000);
+    let manual = '';
     try {
-      const tr = await db(env).prepare('SELECT tried_at FROM ' + tbl + ' WHERE slug = ?').bind(slug).first();
-      if (tr && tr.tried_at && now - Number(tr.tried_at) < LOGO_RETRY) { logoMiss.set(slug, Date.now()); return null; }
-    } catch (e) {}
-    if (!(await poolKnown(slug))) return null;
-    let svg = null, src = '';
-    for (const b of BASES.slice(0, 2)) {
-      try {
-        const u = b + '/resources/mining-pools/' + slug + '.svg';
-        const res = await fetch(u, { headers: { 'User-Agent': UA, Accept: 'image/svg+xml' }, signal: AbortSignal.timeout(5000) });
-        if (!res.ok) continue;
-        const t = await res.text();
-        if (validSvg(t)) { svg = t; src = u; break; }
-      } catch (e) {}
+      const tr = await db(env).prepare('SELECT url, tried_at FROM ' + tbl + ' WHERE slug = ?').bind(slug).first();
+      if (tr) {
+        manual = /^https:\/\/[^\s"'<>]+$/.test(String(tr.url || '')) ? String(tr.url) : '';
+        if (!manual && tr.tried_at && now - Number(tr.tried_at) < LOGO_RETRY) { logoMiss.set(slug, Date.now()); return null; }
+      }
+    } catch (e) { console.error('baca tabel logo gagal:', e && e.message); return null; }
+    if (!manual && !(await poolKnown(slug))) return null;
+    let got = manual ? await pullLogo(manual) : null;
+    if (!got) {
+      for (const b of BASES.slice(0, 2)) {
+        got = await pullLogo(b + '/resources/mining-pools/' + slug + '.svg');
+        if (got) break;
+      }
     }
     try {
       const del = db(env).prepare('DELETE FROM ' + tbl + ' WHERE slug = ?').bind(slug);
       const ins = db(env).prepare('INSERT INTO ' + tbl + ' (slug, logo, mime, url, tried_at) VALUES (?, ?, ?, ?, ?)')
-        .bind(slug, svg ? btoa(unescape(encodeURIComponent(svg))) : '', svg ? 'image/svg+xml' : '', src, now);
+        .bind(slug, got ? bytesB64(got.buf) : '', got ? got.mime : '', manual || null, now);
       await db(env).batch([del, ins]);
     } catch (e) { console.error('simpan logo miner gagal:', e && e.message); }
-    if (!svg) { logoMiss.set(slug, Date.now()); return null; }
-    return { t: Date.now(), body: new TextEncoder().encode(svg), mime: 'image/svg+xml' };
+    if (!got) { logoMiss.set(slug, Date.now()); return null; }
+    return { t: Date.now(), body: got.buf, mime: got.mime };
   })();
   logoJobs.set(slug, job);
   try { return await job; } finally { logoJobs.delete(slug); }
