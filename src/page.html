@@ -1,11 +1,11 @@
-<!DOCTYPE html><html lang="id"><head><!-- velzon-skin v1 --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!DOCTYPE html><html lang="id"><head><!-- bloklab-skin v1 --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>__SITE_NAME__ – Bitcoin Explorer</title>
 <meta name="description" content="Explorer Bitcoin: fee, mempool, block, mining dan Lightning.">
 <meta name="site-name" content="__SITE_NAME__"><meta name="ts-sitekey" content="__SITEKEY__">
 <meta name="color-scheme" content="light dark"><meta name="theme-color" content="#299cdb"><link rel="icon" type="image/png" href="/asset/favicon"><link rel="apple-touch-icon" href="/asset/favicon">
 <script nonce="__NONCE__">try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light')document.documentElement.dataset.theme=s}catch(e){}</script>
 <style>
-/* design: velzon-skin v1 */
+/* design: bloklab-skin v1 */
 :root{--bg:#f3f3f9;--bg2:#ffffff;--sb:#ffffff;--tx:#495057;--hd:#343a40;--mu:#878a99;--ln:#e9ebec;--th:#f3f6f9;--ac:#299cdb;--at:#1f87c0;--a2:#66b9ea;--am:#f7b84b;--ok:#0ab39c;--bad:#f06548;--chip:#dff0fa;--glow:rgba(41,156,219,.28);--gr:#299cdb;--sh:0 1px 2px rgba(56,65,74,.15);--mo:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16191c;--bg2:#212529;--sb:#212529;--tx:#ced4da;--hd:#e9ecef;--mu:#878a99;--ln:#2d3238;--th:#262b30;--ac:#299cdb;--at:#5cb8ea;--a2:#66b9ea;--chip:#1d3a4d;--glow:rgba(41,156,219,.3);--sh:none}}
 :root[data-theme=dark]{--bg:#16191c;--bg2:#212529;--sb:#212529;--tx:#ced4da;--hd:#e9ecef;--mu:#878a99;--ln:#2d3238;--th:#262b30;--ac:#299cdb;--at:#5cb8ea;--a2:#66b9ea;--chip:#1d3a4d;--glow:rgba(41,156,219,.3);--sh:none}
@@ -60,9 +60,6 @@ nav .sub a.on{background:var(--chip);color:var(--ac)}
 main{flex:1;padding:0}
 #app{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-content:start;padding:0 24px 30px;outline:0}
 .pg{animation:fi .4s ease both}.in{animation:fi .3s ease both}@keyframes fi{from{opacity:0;transform:translateY(8px)}}
-.hd{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;min-height:54px;margin:0 -24px;padding:6px 24px;background:var(--bg2);border-bottom:1px solid var(--ln)}
-.hd h1{margin:0;font-size:15px;line-height:1.4;font-weight:600;text-transform:uppercase;color:var(--hd);letter-spacing:.01em}
-.bc{display:flex;align-items:center;font-size:14px;color:var(--mu)}.bc i{font-style:normal;margin:0 10px;font-size:12px}.bc span{color:var(--mu)}.bc a,.bc em{font-style:normal;color:var(--hd)}
 
 /* ---------- kartu ---------- */
 .s{grid-column:1/-1;position:relative;display:flex;flex-direction:column;min-width:0;background:var(--bg2);border:1px solid var(--ln);border-radius:4px;box-shadow:var(--sh)}
@@ -224,11 +221,54 @@ nav .sub{position:static;opacity:1;visibility:visible;transform:none;border:0;bo
 nav .sub a{height:40px;display:flex;align-items:center}
 #tk{padding:0 12px}
 #tk span:nth-child(3),#tk span:nth-child(4){display:none}
-#app{padding:0 14px 24px;gap:16px}.hd{margin:0 -14px;padding:6px 14px}
+#app{padding:0 14px 24px;gap:16px}
 .sh{padding:13px 16px}.sb{padding:16px}
 footer{padding-left:14px;padding-right:14px}
 #up{right:14px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* fee-patch v1 */
+:root{--hb:#fff3e2;--hl:#fde3bf;--ht:#7a4a0c;--hc:#a1672a}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--hb:rgba(247,184,75,.12);--hl:rgba(247,184,75,.24);--ht:#f7d79b;--hc:#d9b27a}}
+:root[data-theme=dark]{--hb:rgba(247,184,75,.12);--hl:rgba(247,184,75,.24);--ht:#f7d79b;--hc:#d9b27a}
+.sh{background:var(--hb);border-bottom-color:var(--hl);border-radius:3px 3px 0 0}
+.sh h2{color:var(--ht)}.sh .cap{color:var(--hc)}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#app{padding-top:24px}
+#app[data-p=fee] .s:last-child{grid-column:1/-1}
+#app[data-p=fee] .s:has(.mpc){grid-column:1/-1}
+.s:has(.mpc) .nums{grid-template-columns:repeat(4,minmax(0,1fr))}
+.mpc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:26px}
+.mpc .pt{margin:0 0 10px}
+@media(max-width:860px){#app{padding-top:16px}.mpc{grid-template-columns:1fr;gap:22px}}
+@media(max-width:600px){
+.s:has(.mpc) .nums,.nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+.nums>div:nth-child(odd){padding-left:0;border-left:0}
+.nums>div:nth-child(even){padding-left:16px;border-left:1px dashed var(--ln)}}
+
+/* kubus mempool block */
+.blocks{position:relative;gap:14px;align-items:flex-start}
+.bk.pb{flex:1 0 128px;min-width:128px;max-width:210px}
+.pb .col{position:relative;display:block;height:auto;aspect-ratio:1/1;margin-bottom:0;border-radius:6px}
+.pb .st{position:absolute;left:0;right:0;bottom:0;height:var(--f)}
+.pb .t0{--tc:#8b94a3}
+.pb .col::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.04) 55%,rgba(0,0,0,.2));pointer-events:none;transition:opacity .25s}
+#gt[data-g] .pb .col::after{opacity:0}
+.pb .tx{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px;text-align:center;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.pb .tx b{display:block;font-size:clamp(15px,1.5vw,19px);font-weight:700;line-height:1.2;color:inherit}
+.pb .tx b small{display:inline;font-size:11px;font-weight:500;opacity:.9;color:inherit}
+.pb .tx em{font-style:normal;font-size:11px;opacity:.92}
+.pb .tx .sz{margin-top:8px;font-size:12.5px;font-weight:600}
+.pb .tx .nt{font-size:11.5px;opacity:.92}
+#gt[data-g] .pb .tx{color:var(--hd);text-shadow:none}
+.pb .lb{display:block;margin-top:10px;text-align:center}
+.pb .lb b{display:block;font-size:13.5px;font-weight:600;color:var(--hd)}
+.pb .lb small{display:block;font-size:12px;color:var(--mu)}
+.pb[aria-expanded=true] .lb b{color:var(--ac)}
+.bk.pb.gone{pointer-events:none;overflow:hidden;animation:pbGone .9s ease forwards}
+.bk.pb.new{animation:pbNew .9s ease both}
+@keyframes pbGone{from{flex-grow:1;flex-basis:128px;min-width:128px;margin-right:0;opacity:1}to{flex-grow:0;flex-basis:0;min-width:0;margin-right:-14px;opacity:0}}
+@keyframes pbNew{from{flex-grow:0;flex-basis:0;min-width:0;margin-left:-14px;opacity:0}to{flex-grow:1;flex-basis:128px;min-width:128px;margin-left:0;opacity:1}}
 </style></head><body>
 <a class="skip" href="#app">Lewati ke konten</a>
 <header><div class="bar"><a class="logo" href="#fee" aria-label="__SITE_NAME__"><img src="/asset/logo" alt="__SITE_NAME__" width="270" height="90" decoding="async"></a><nav id="nv" aria-label="Menu utama"><a href="#fee" data-r="fee">Fee</a><a href="#mining" data-r="mining">Mining</a><div class="dd"><button type="button" aria-haspopup="true" aria-expanded="false">Stats ▾</button><div class="sub"><a href="#stats-non" data-r="stats-non">On-chain</a><a href="#stats-ln" data-r="stats-ln">Lightning</a></div></div><a href="#explorer" data-r="explorer">Explorer</a><a href="#konverter" data-r="konverter">Konverter</a><a href="#kontak" data-r="kontak">Kontak</a></nav><form class="gs" id="gsf" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="gs" type="search" placeholder="Address / TXID / block…" aria-label="Cari address, TXID, block hash atau block height" autocomplete="off" autocapitalize="off" spellcheck="false"></form><div class="act"><button id="fs" class="ib" type="button" aria-label="Layar penuh"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button><button id="th" class="ib" type="button" aria-label="Ganti tema"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span class="tn">Ganti tema</span></button><button id="mb" class="ib" type="button" aria-label="Menu" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h12M3 18h18"/></svg></button></div></div><div class="tk"><div id="tk" aria-live="off"></div></div></header>
@@ -267,7 +307,7 @@ const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),10000);
 return INF[k]=fetch(U(u),{signal:ac.signal}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(v=>{const o={t:Date.now(),v};Cc[k]=o;lsPut(k,o)}).catch(()=>{}).finally(()=>{clearTimeout(tm);delete INF[k];PEND.delete(k);sched()})}
 const req=async u=>{const r=await fetch(U(u),{cache:'no-store'});if(!r.ok){const e=new Error('http');e.status=r.status;throw e}return r};
 const gj=async u=>(await req(u)).json(),gtx=async u=>(await req(u)).text();
-const NEED={fee:[['all','/api/all'],['mb','/v1/fees/mempool-blocks'],['mp','/mempool'],['rt','/mempool/recent'],['rp','/v1/replacements'],['bf','/v1/mining/blocks/fees/1m'],['fh','/api/history']],
+const NEED={fee:[['all','/api/all'],['mb','/v1/fees/mempool-blocks'],['mp','/mempool'],['rt','/mempool/recent'],['rp','/v1/replacements'],['bf','/v1/mining/blocks/fees/1m'],['fh','/api/history'],['bl','/v1/blocks'],['st','/v1/statistics/2h']],
 mining:[['bl','/v1/blocks'],['rs','/v1/mining/reward-stats/144'],['rw','/v1/mining/blocks/rewards/1m'],['da','/v1/difficulty-adjustment'],['pl','/v1/mining/pools/1w'],['hr','/v1/mining/hashrate/3m'],['fr','/v1/mining/blocks/fee-rates/1m'],['hp','/v1/mining/hashrate/pools/1w'],['mn','/api/miners']],
 block:()=>[['bl','/v1/blocks'],['mn','/api/miners']].concat(hex64(ARG)?[['bi:'+ARG,'/v1/block/'+ARG],['bt:'+ARG+':'+BP,'/block/'+ARG+'/txs'+(BP?'/'+BP:'')]]:[]),
 tx:()=>[['bl','/v1/blocks'],['tx:'+ARG,'/tx/'+ARG]],
@@ -287,8 +327,7 @@ const lg=a=>`<p class="lg">${a.map(([n,c])=>`<i style="--c:${c}"></i>${n}`).join
 const nums=a=>`<div class="nums">${a.map(([l,v])=>`<div><b>${v}</b><span>${l}</span></div>`).join('')}</div>`;
 const tbl=(h,r)=>`<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join('')}</tr>`).join('')}</table></div>`;
 const hb=(r,u='')=>{if(!r||!r.length)return NA;const m=Math.max(...r.map(x=>x[1]))||1;return `<div class="hb">${r.map(([n,v,sg])=>`<div><span class="pc">${sg!=null?mlogo(sg,n):''}${esc(n)}</span><em><u style="--w:${(v/m*100).toFixed(1)}%"></u></em><b>${f(v)}${u}</b></div>`).join('')}</div>`};
-const BCG=()=>({fee:'Dashboards',mining:'Dashboards',block:'Mining',tx:'Mining','stats-non':'Stats','stats-ln':'Stats'}[cur]||'Pages');
-const head=t=>`<section class="hd"><h1>${t}</h1><div class="bc"><em>${BCG()}</em><i>›</i><span>${t}</span></div></section>`;
+const head=t=>`<h1 class="sr">${t}</h1>`;
 const tl=id=>`<a class="mono lk" href="#tx/${esc(id)}">${esc(sh(id))}</a>`;
 const al=a=>`<a class="mono lk" href="#explorer" data-s="${esc(a)}">${esc(a.length>26?a.slice(0,12)+'…'+a.slice(-8):a)}</a>`;
 
@@ -329,9 +368,15 @@ const tierOf=(r,q)=>r>=q.fastestFee?3:r>=q.halfHourFee?2:r>=q.hourFee?1:0;
 const TC=['#8b91a3','var(--ok)','var(--a2)','var(--ac)'],TN=['Below Low','Low','Medium','High'];
 
 const comp=(b,q)=>{const c=[0,0,0,0];for(let j=0;j<100;j++){const r=rateAt(b.feeRange,(j+.5)/100);c[r!=null&&q?tierOf(r,q):0]++}return c};
+const PB={tip:null,first:'',ghost:'',at:0};
+const pbCube=(b,i,q,nw)=>{const c=comp(b,q),fl=Math.max(12,Math.min(100,Math.round(b.blockVSize/1e4))),fr=Array.isArray(b.feeRange)&&b.feeRange.length>1?b.feeRange:null;
+return `<button type="button" class="bk pb${nw?' new':''}" aria-expanded="false" aria-controls="ob" aria-label="Mempool block ${i}, tampilkan detail"><span class="col"><span class="st" style="--f:${fl}%">${[3,2,1,0].filter(k=>c[k]).map(k=>`<i class="t${k}" style="--n:${c[k]}"></i>`).join('')}</span><span class="tx"><b>~${f2(b.medianFee,1)} <small>sat/vB</small></b><em>${fr?f2(fr[0],2)+' – '+f2(fr[fr.length-1],0)+' sat/vB':''}</em><span class="sz">${f2(b.blockVSize/1e6,2)} MvB</span><span class="nt">${f(b.nTx)} transaksi</span></span></span><span class="lb"><b>Block ${i}</b><small>~${(i+1)*10} menit</small></span></button>`};
 const blocksH=()=>{const m=L('mb'),q=FE();if(!Array.isArray(m)||!m.length)return NA;
-return m.slice(0,7).map((b,i)=>{const c=comp(b,q),fl=Math.min(100,Math.round(b.blockVSize/1e4));
-return `<button type="button" class="bk" aria-expanded="false" aria-controls="ob" aria-label="Mempool block ${i+1}, tampilkan detail"><span class="col"><span class="st" style="--f:${fl}%">${[3,2,1,0].filter(k=>c[k]).map(k=>`<i class="t${k}" style="--n:${c[k]}"></i>`).join('')}</span></span><b>~${f2(b.medianFee,1)} <small style="display:inline">sat/vB</small></b><small>${f(b.nTx)} tx</small><small>~${(i+1)*10} min</small></button>`}).join('')};
+const bl=L('bl'),tip=Array.isArray(bl)&&bl[0]?num(bl[0].height):null;
+if(tip!=null){if(PB.tip!=null&&tip>PB.tip){PB.at=Date.now();PB.ghost=PB.first.replace('class="bk pb"','class="bk pb gone" tabindex="-1" aria-hidden="true"');OB=OB>0?OB-1:-1}PB.tip=tip}
+const an=!!(PB.at&&PB.ghost&&Date.now()-PB.at<2000),n=Math.min(7,m.length),cs=m.slice(0,n).map((b,i)=>pbCube(b,i,q,an&&i===n-1));
+PB.first=cs[0].replace(' new"','"');
+return (an?PB.ghost:'')+cs.join('')};
 const usdF=v=>'$'+v.toLocaleString('id-ID',{minimumFractionDigits:v<10?2:0,maximumFractionDigits:v<10?2:0});
 
 const ladder=(fr,q)=>{const n=fr.length,names=n===7?['Min','10%','25%','Median','75%','90%','Max']:fr.map((_,k)=>Math.round(k/(n-1)*100)+'%');
@@ -344,7 +389,7 @@ const obHtml=i=>{const m=L('mb'),q=FE(),pr=(L('all')||{}).price;if(!Array.isArra
 const row=(k,v)=>v?`<div><dt>${k}</dt><dd>${v}</dd></div>`:'';
 const usd=sat=>pr&&sat!=null?`<span class="usd">${usdF(sat/1e8*pr)}</span>`:'';
 const c=comp(b,q),ord=[3,2,1,0].filter(k=>c[k]);
-return `<div class="obh"><h3>Mempool block ${i+1}${i?'':' · next block'}<small>~${(i+1)*10} min</small></h3><button type="button" class="obx">Tutup</button></div><div class="obg"><dl class="kv">`+
+return `<div class="obh"><h3>Mempool block ${i}${i?'':' · next block'}<small>~${(i+1)*10} min</small></h3><button type="button" class="obx">Tutup</button></div><div class="obg"><dl class="kv">`+
 row('Median fee',`~${f2(b.medianFee,1)} <small>sat/vB</small>`+usd(b.medianFee*140)+(pr?' <small>/ 140 vB</small>':''))+
 row('Fee span',fr?`${f2(fr[0],2)} – ${f2(fr[fr.length-1],1)} <small>sat/vB</small>`:'')+
 row('Total fees',b.totalFees!=null?`${f2(b.totalFees/1e8,3)} <small>BTC</small>`+usd(b.totalFees):'')+
@@ -352,7 +397,7 @@ row('Transactions',f(b.nTx))+
 row('Size',`${b.blockSize!=null?f2(b.blockSize/1e6,2)+' MB <small>· ':'<small>'}${f2(b.blockVSize/1e6,2)} MvB</small><div class="fb" style="--f:${Math.min(100,b.blockVSize/1e4)|0}%"><u></u></div>`)+
 `</dl><div>`+(fr?`<p class="pt">Fee rate per percentile · sat/vB, skala log</p>${ladder(fr,q)}<p class="pt" style="margin-top:24px">Komposisi tier (perkiraan)</p><div class="cmp">${ord.map(k=>`<i style="--n:${c[k]};--tc:${TC[k]}"></i>`).join('')}</div>${lg(ord.map(k=>[TN[k]+' '+c[k]+'%',TC[k]]))}`:'<p class="na">Data percentile belum tersedia untuk block ini.</p>')+`</div></div>`};
 let OB=-1,OBL=0;
-function applyOB(anim){const bl=$('bl'),ob=$('ob'),obi=$('obi');if(!bl||!ob||!obi)return;const ks=[...bl.querySelectorAll('.bk')];if(OB>=ks.length)OB=-1;
+function applyOB(anim){const bl=$('bl'),ob=$('ob'),obi=$('obi');if(!bl||!ob||!obi)return;const ks=[...bl.querySelectorAll('.bk:not(.gone)')];if(OB>=ks.length)OB=-1;
 ks.forEach((k,i)=>k.setAttribute('aria-expanded',String(i===OB)));if(OB>=0)OBL=OB;
 const h=ks.length?obHtml(OBL):'';obi.innerHTML=h;
 if(!anim)ob.style.transition='none';ob.classList.toggle('o',OB>=0&&!!h);if(!anim){void ob.offsetHeight;ob.style.transition=''}}
@@ -398,6 +443,14 @@ const halvN=bl=>{const t=Array.isArray(bl)&&bl[0]?num(bl[0].height):null;return 
 const halvingH=(bl,da)=>{const h=halvN(bl);if(!h)return '';const HV=210000,rem=h.nx-h.t,a=da?num(da.timeAvg):null,s=a>0?(a>1e4?a/1e3:a):600,sec=Math.max(480,Math.min(720,s)),eta=new Date(Date.now()+rem*sec*1e3),pg=(h.t%HV)/HV*100;
 return `<div class="prog"><u style="--w:${pg.toFixed(1)}%"></u></div>`+nums([['Progress',pg.toFixed(1)+'%'],['Remaining blocks',f(rem)],['Estimated date',eta.toLocaleDateString('id-ID',{month:'short',year:'numeric'})],['Reward after (BTC)',f2(50/Math.pow(2,h.nx/HV),4)]])};
 const halvingC=bl=>{const h=halvN(bl);return (h?'Block '+f(h.nx)+' · reward':'Reward')+' turun separuh tiap 210.000 block'};
+const mpH=()=>{const mp=L('mp'),q=FE(),stt=L('st');
+const tl=[];if(q)tl.push(['Minimum fee',f2(q.minimumFee)+' sat/vB']);if(mp)tl.push(['Unconfirmed TX',f(mp.count)],['Memory (vsize)',f2(mp.vsize/1e6,1)+' MvB'],['Total fee',f2(mp.total_fee/1e8)+' BTC']);
+if(!tl.length)return '';
+const stA=Array.isArray(stt)&&stt.length>2?stt.filter(x=>num(x.added)!=null).sort((x,y)=>x.added-y.added):null;
+let uc=null;if(stA){const k=Math.ceil(stA.length/120),b=stA.filter((_,i)=>i%k===0).filter(x=>num(x.unconfirmed_transactions)!=null);if(b.length>2)uc=b}
+let v=null,l=null;if(mp&&Array.isArray(mp.fee_histogram)&&mp.fee_histogram.length){const hg=mp.fee_histogram,k=Math.ceil(hg.length/30);v=[];l=[];for(let i=0;i<hg.length;i+=k){const g=hg.slice(i,i+k);v.push(g.reduce((s,x)=>s+x[1],0)/1e3);l.push(Math.round(g[0][0])+' sat/vB')}v.reverse();l.reverse()}
+const w=busy(['st']),ph='<p class="na">Memuat chart…</p>';
+return nums(tl)+`<div class="mpc"><div><p class="pt">Unconfirmed transactions · 2 jam terakhir</p>${ch(uc?line([uc.map(x=>x.unconfirmed_transactions)],[C[0]],190,uc.map(x=>hm(x.added))):(w?ph:NA))}</div><div><p class="pt">Mempool by vBytes · kvB per rentang fee</p>${ch(v?bars([v],[C[1]],190,l):NA)}</div></div>`};
 const P={
 block:blockPage,
 tx:txPage,
@@ -410,12 +463,12 @@ const rpl=Array.isArray(rp)&&rp.length?rp.slice(0,6).map(x=>{const t=x.tx||{},o=
 return head('Transaction Fees','Estimasi fee dan kondisi mempool, langsung dari jaringan Bitcoin.')+
 S('Transaction fee',`<div class="tiers" id="tz">${tiersH()}</div>`,'sat/vB',['all'])+
 S('Mempool blocks',`<div class="seg" id="gg">${['All','Low','Medium','High'].map((x,i)=>`<button type="button" data-f="${i}" class="${i===GF?'on':''}">${i?`<i style="--c:${TC[i]}"></i>`:''}${x}</button>`).join('')}</div><div id="gt"${GF?` data-g="${GF}"`:''}><div class="blocks" id="bl">${blocksH()}</div><div class="ob" id="ob"><div class="obi" id="obi"></div></div></div>`,'',['mb','all'])+
-S('Mempool',st.length?nums(st):'','',['all','mp'])+
+S('Mempool',mpH(),'',['all','mp','st'])+
 S('Fee history (24h)',hr?ch(line([hr.map(r=>r.high),hr.map(r=>r.medium),hr.map(r=>r.low)],[C[0],C[1],C[2]],220,hr.map(r=>hm(r.t))))+lg([['High',C[0]],['Medium',C[1]],['Low',C[2]]]):'<p class="na">Belum ada data.</p>','',['fh'])+
-S('Recent transaction',Array.isArray(rt)&&rt.length?tbl(['TXID','Amount','Size','Fee'],rt.slice(0,8).map(t=>[tl(t.txid),f2(t.value/1e8,4)+' BTC',f(t.vsize)+' vB',f2(t.fee/t.vsize,1)+' sat/vB'])):'','',['rt'])+
-S('Recent replacements',rpl?tbl(['Replacement','Replaced','Old rate','New rate'],rpl):'<p class="na">Belum ada RBF replacement terbaru.</p>','',['rp'])+
 S('Block fees chart',ch(bv?bars([bv],[C[0]],220,dl):NA),'Avg fee per block (BTC), 1 bulan',['bf'])+
-S('Block fees vs subsidy',ch(bv?bars([bv.map(()=>3.125),bv],[C[1],C[0]],220,dl):NA)+lg([['Subsidy 3,125 BTC',C[1]],['Fee',C[0]]]),'',['bf'])},
+S('Block fees vs subsidy',ch(bv?bars([bv.map(()=>3.125),bv],[C[1],C[0]],220,dl):NA)+lg([['Subsidy 3,125 BTC',C[1]],['Fee',C[0]]]),'',['bf'])+
+S('Recent transaction',Array.isArray(rt)&&rt.length?tbl(['TXID','Amount','Size','Fee'],rt.slice(0,8).map(t=>[tl(t.txid),f2(t.value/1e8,4)+' BTC',f(t.vsize)+' vB',f2(t.fee/t.vsize,1)+' sat/vB'])):'','',['rt'])+
+S('Recent replacements',rpl?tbl(['Replacement','Replaced','Old rate','New rate'],rpl):'<p class="na">Belum ada RBF replacement terbaru.</p>','',['rp'])},
 
 mining:()=>{const bl=L('bl'),rs=L('rs'),rw=L('rw'),da=L('da'),pl=L('pl'),hr=L('hr'),fr=L('fr'),hp=L('hp');
 const pr=pl&&Array.isArray(pl.pools)&&pl.pools.length?pl.pools.map(p=>[p.name,p.blockCount,p.slug]):null,top=pr&&pr.slice(0,6),oth=pr&&pr.slice(6).reduce((s,x)=>s+x[1],0);
@@ -565,7 +618,7 @@ if(!need.some(x=>x[0]=='all'))ld('all','/api/all');
 if(r=='kontak')initTs();
 if(r=='explorer'&&pend){const v=pend;pend=null;$('q').value=v;org=v;show(v)}}
 
-document.addEventListener('click',e=>{const ob=e.target.closest&&e.target.closest('.bk,.obx');if(ob){OB=ob.classList.contains('obx')?-1:(OB===[...ob.parentNode.children].indexOf(ob)?-1:[...ob.parentNode.children].indexOf(ob));applyOB(true);return}const g=e.target.closest&&e.target.closest('#gg [data-f]');if(g){GF=+g.dataset.f;applyG();return}
+document.addEventListener('click',e=>{const ob=e.target.closest&&e.target.closest('.bk,.obx');if(ob){const bi=ob.classList.contains('obx')?-1:[...ob.parentNode.querySelectorAll('.bk:not(.gone)')].indexOf(ob);OB=bi===OB?-1:bi;applyOB(true);return}const g=e.target.closest&&e.target.closest('#gg [data-f]');if(g){GF=+g.dataset.f;applyG();return}
 const t=e.target.closest&&e.target.closest('[data-x],[data-s],[data-back]');if(!t)return;
 if(t.hasAttribute('data-back')){show(org);return}
 e.preventDefault();if(t.dataset.x!=null)gx(t.dataset.x);else{show(t.dataset.s);scrollTo({top:0})}});
@@ -603,10 +656,10 @@ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cons
 const sc=()=>document.querySelectorAll('#app .s:not(.v)').forEach(n=>io.observe(n));
 new MutationObserver(sc).observe(A,{childList:true});sc()}})();
 
-const tick=()=>{if(document.hidden)return;ld('all','/api/all',true);if(cur==='fee')ld('mb','/v1/fees/mempool-blocks',true)};
+const tick=()=>{if(document.hidden)return;ld('all','/api/all',true);if(cur==='fee'){ld('mb','/v1/fees/mempool-blocks',true);ld('mp','/mempool',true);ld('st','/v1/statistics/2h',true);ld('bl','/v1/blocks',true)}};
 setInterval(tick,60000);setInterval(tkUi,15000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){const c=Cc.all;if(!c||Date.now()-c.t>60000)tick()}});
-/*VZ*/(()=>{
+/*UI*/(()=>{
 const gsf=$('gsf'),gs=$('gs'),fsb=$('fs'),upb=$('up');
 gsf.onsubmit=e=>{e.preventDefault();const v=gs.value.trim().replace(/[<>&"'\s]/g,'');if(!v)return;gs.value='';gs.blur();
 if(/^\d{1,7}$/.test(v)){location.hash='#block/'+v;return}gx(v)};
