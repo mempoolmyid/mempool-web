@@ -19,7 +19,7 @@ a{color:inherit;text-decoration:none}
 header{position:sticky;top:0;z-index:20;background:var(--hd);box-shadow:0 1px 0 rgba(255,255,255,.45),0 8px 24px -14px rgba(76,29,149,.55);padding-top:env(safe-area-inset-top,0px)}
 .bar{display:flex;align-items:center;gap:20px;height:58px}
 .logo{position:relative;display:block;flex:none;width:234px;height:30px;overflow:hidden}
-.logo img{position:absolute;left:-17.9px;top:-28.9px;width:269.3px;height:89.8px;max-width:none;filter:drop-shadow(0 1px 1.5px rgba(43,21,96,.55))}
+.logo img{position:absolute;left:-17.9px;top:-28.9px;width:269.3px;height:89.8px;max-width:none}
 nav{display:flex;align-items:center;gap:4px;margin-left:auto;height:100%}
 nav a,nav .dd>button,#th{display:flex;align-items:center;height:36px;padding:0 14px;background:none;border:0;border-radius:999px;color:var(--hx);font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s,color .2s}
 nav a:hover,nav button:hover{background:rgba(255,255,255,.4)}
@@ -27,6 +27,7 @@ nav a.on,nav .dd.on>button{background:#fff;color:#5b21b6;font-weight:600}
 .dd{position:relative;display:flex;align-items:center;height:100%}
 .sub{position:absolute;right:0;top:100%;min-width:180px;background:var(--hd);border:1px solid rgba(255,255,255,.55);border-radius:14px;padding:6px;box-shadow:0 14px 30px -12px rgba(76,29,149,.5);opacity:0;visibility:hidden;transform:translateY(-4px);transition:.2s}
 .dd:hover .sub,.dd:focus-within .sub,.dd.o .sub{opacity:1;visibility:visible;transform:none}
+@media(min-width:761px){.dd.x .sub{opacity:0;visibility:hidden;transform:translateY(-4px)}}
 nav .sub a{height:auto;padding:8px 12px;display:block;border-radius:8px}
 #mb{display:none}#th .tn{display:none;margin-left:10px}
 .tk{border-top:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.22);font-size:12.5px;color:var(--hx)}
@@ -129,26 +130,19 @@ select option{color:#111;background:#fff}
 
 footer{border-top:1px solid var(--ln);padding:26px 0 36px;color:var(--mu);font-size:13px}
 footer .w{display:flex;gap:8px 24px;flex-wrap:wrap;align-items:center}footer a{white-space:nowrap}footer a:hover{color:var(--at)}footer .cp{margin-left:auto}
-.px{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
-.px i{position:absolute;display:block;background:#8b5cf6;opacity:.09;will-change:transform}
-.px i:nth-child(1){width:340px;height:340px;border-radius:50%;left:-120px;top:120px;transform:translate3d(0,calc(var(--sy,0)*-.1px),0)}
-.px i:nth-child(2){width:220px;height:220px;border-radius:28px;right:6%;top:38%;transform:translate3d(0,calc(var(--sy,0)*-.24px),0) rotate(18deg)}
-.px i:nth-child(3){width:300px;height:300px;border-radius:50%;left:30%;bottom:-140px;transform:translate3d(0,calc(var(--sy,0)*-.36px),0)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .px i{opacity:.14}}
-:root[data-theme=dark] .px i{opacity:.14}
 .hd{position:relative}
-.hd h1{transform:translate3d(0,calc(var(--sy,0)*.16px),0);opacity:calc(1 - var(--sy,0)/640);color:var(--at)}
+.hd h1{color:var(--at);will-change:transform,opacity}
 .rv .s{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv .s.v{opacity:1;transform:none}
 .ml{display:inline-block;flex:none;border-radius:50%;object-fit:contain;vertical-align:middle}
-img.ml{background:var(--chip);padding:3px}
+img.ml{background:#2b1560;padding:3px}
 .mf{display:inline-flex;align-items:center;justify-content:center;background:var(--chip);color:#4c1d95;font-weight:700}
 .pc{display:inline-flex;align-items:center;gap:8px}
 .bxrow{display:flex;gap:14px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:thin}
 .bxc{flex:0 0 150px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 10px 12px;min-height:196px;text-align:center;border-radius:6px;color:#fff;background:var(--ac);transition:transform .25s ease}
 .bxc:hover{transform:translateY(-5px)}
 .bxh{font-size:16px}.bxm{font-size:13px;font-weight:600}.bxm small{font-weight:400;opacity:.85}.bxr{font-size:11.5px;opacity:.85;min-height:1.4em}
-.bxl{margin:6px 0 2px}.bxl img.ml,.bxl .mf{background:#fff}
+.bxl{margin:6px 0 2px}.bxl .mf{background:#fff}.bxl img.ml{background:#2b1560}
 .bxp{font-size:13px;font-weight:600;line-height:1.2}.bxt{font-size:11.5px;opacity:.9;margin-top:auto}
 .bxhd{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:0 0 18px}.bxhd b{display:block;font-size:18px}.bxnv{margin-left:auto;display:flex;gap:18px;font-size:13.5px}
 .bxkv{max-width:760px}.wb{word-break:break-all}.mu{color:var(--mu)}
@@ -164,7 +158,6 @@ img.ml{background:var(--chip);padding:3px}
 @media(max-width:620px){.bxio{grid-template-columns:1fr}.bxio i{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
-<div class="px" aria-hidden="true"><i></i><i></i><i></i></div>
 <a class="skip" href="#app">Lewati ke konten</a>
 <header>
 <div class="w bar"><a class="logo" href="#fee" aria-label="__SITE_NAME__"><img src="/asset/logo" alt="__SITE_NAME__" width="270" height="90" decoding="async"></a><button id="mb" type="button" aria-label="Menu" aria-expanded="false">☰</button>
@@ -242,13 +235,21 @@ return `<svg ${meta('l',ds,lb,cols,[mn,mx,h])}><defs>${ds.map((_,k)=>`<linearGra
 const bars=(ds,cols=C,h=220,lb)=>{if(!ds[0]||!ds[0].length||ds.some(d=>d.some(v=>!isFinite(v))))return NA;
 const n=ds[0].length,w=554/n,mx=Math.max(...ds[0].map((_,i)=>ds.reduce((s,d)=>s+d[i],0)))||1;
 return `<svg ${meta('b',ds,lb,cols,[0,mx,h])}><g class="ax">${axis(0,mx,lb,h)}</g>${ds[0].map((_,i)=>{let y=h-18;return ds.map((d,k)=>{const hh=d[i]/mx*(h-28);y-=hh;return `<rect x="${40+i*w+w*.1}" y="${y}" width="${w*.8}" height="${hh}" fill="${cols[k]}"/>`}).join('')}).join('')}</svg>`};
-document.addEventListener('pointermove',e=>{const s=e.target.closest&&e.target.closest('svg.cc'),t=$('tp');
+const tpShow=e=>{const s=e.target.closest&&e.target.closest('svg.cc'),t=$('tp');
 document.querySelectorAll('svg.cc.h').forEach(x=>{if(x!==s)x.classList.remove('h')});if(!s){t.style.opacity=0;return}
 const r=s.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600,d=JSON.parse(s.dataset.d),l=JSON.parse(s.dataset.l),c=s.dataset.c.split(','),[mn,mx,h]=s.dataset.r.split(',').map(Number),n=d[0].length,bar=s.dataset.t=='b';
 let i=bar?Math.floor((vx-40)/(554/n)):Math.round((vx-40)/554*(n-1));i=Math.max(0,Math.min(n-1,i));
 if(!bar){const x=40+i/(n-1)*554;s.querySelector('.xh').setAttribute('x1',x);s.querySelector('.xh').setAttribute('x2',x);s.querySelectorAll('.dots circle').forEach((o,k)=>{o.setAttribute('cx',x);o.setAttribute('cy',h-18-(d[k][i]-mn)/(mx-mn||1)*(h-28))});s.classList.add('h')}
 t.innerHTML=esc(l[i]||'#'+(i+1))+'<br>'+d.map((x,k)=>`<span style="color:${c[k]}">●</span> ${(+x[i]).toLocaleString('id-ID',{maximumFractionDigits:3})}`).join('<br>');
-t.style.left=Math.min(e.clientX+14,innerWidth-180)+'px';t.style.top=Math.max(8,e.clientY-50)+'px';t.style.opacity=1});
+t.style.left=Math.min(e.clientX+14,innerWidth-180)+'px';t.style.top=Math.max(8,e.clientY-50)+'px';t.style.opacity=1};
+let tpT=0;
+const tpHide=()=>{clearTimeout(tpT);const t=$('tp');if(t)t.style.opacity=0;document.querySelectorAll('svg.cc.h').forEach(x=>x.classList.remove('h'))};
+document.addEventListener('pointermove',tpShow);
+document.addEventListener('pointerdown',tpShow);
+document.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse'){clearTimeout(tpT);tpT=setTimeout(tpHide,1200)}});
+document.addEventListener('pointercancel',tpHide);
+document.addEventListener('pointerout',e=>{if(e.pointerType==='mouse'&&!e.relatedTarget)tpHide()});
+addEventListener('scroll',tpHide,{passive:true});addEventListener('blur',tpHide);
 
 let GF=0; 
 const FE=()=>{const a=L('all');return a&&a.fees||null};
@@ -292,7 +293,8 @@ const applyG=()=>{const gg=$('gg'),gt=$('gt');if(!gg||!gt)return;[...gg.children
 let ARG='',BP=0,LASTR='',HFAIL='';
 const hex64=s=>/^[0-9a-fA-F]{64}$/.test(s||'');
 const MS=()=>{const m=L('mn');return m&&Array.isArray(m.slugs)?m.slugs:[]};
-const mlogo=(s,n,z)=>{s=String(s||'');z=z||22;return s&&MS().indexOf(s)>=0?`<img class="ml" src="/asset/miner/${esc(s)}" alt="${esc(n||s)}" width="${z}" height="${z}" loading="lazy" decoding="async">`:`<span class="ml mf" style="width:${z}px;height:${z}px;font-size:${Math.round(z*.5)}px">${esc(String(n||s||'?').trim().charAt(0).toUpperCase())}</span>`};
+const mlogo=(s,n,z)=>{s=String(s||'');z=z||22;return /^[a-z0-9-]{1,40}$/.test(s)?`<img class="ml" src="/asset/miner/${s}" alt="${esc(n||s)}" width="${z}" height="${z}" loading="lazy" decoding="async">`:`<span class="ml mf" style="width:${z}px;height:${z}px;font-size:${Math.round(z*.5)}px">${esc(String(n||s||'?').trim().charAt(0).toUpperCase())}</span>`};
+document.addEventListener('error',e=>{const i=e.target;if(!i||i.tagName!=='IMG'||!i.classList.contains('ml'))return;const z=+i.getAttribute('width')||22,sp=document.createElement('span');sp.className='ml mf';sp.style.cssText='width:'+z+'px;height:'+z+'px;font-size:'+Math.round(z*.5)+'px';sp.textContent=(i.alt||'?').trim().charAt(0).toUpperCase();i.replaceWith(sp)},true);
 const poolOf=b=>(b&&b.extras&&b.extras.pool)||{};
 const poolCell=b=>{const p=poolOf(b);return `<span class="pc">${mlogo(p.slug,p.name)}${esc(p.name||'-')}</span>`};
 const bt=v=>(v/1e8).toFixed(8);
@@ -324,6 +326,10 @@ h=`<dl class="kv bxkv">`+kvr('TXID',`<span class="mono wb">${esc(x.txid)}</span>
 (st.confirmed?kvr('Block',`<a class="lk" href="#block/${esc(st.block_hash)}">${f(st.block_height)}</a>`)+kvr('Waktu',st.block_time?dtm(st.block_time):''):'')+
 kvr('Fee',f(x.fee)+' sat')+kvr('Fee rate',f2(x.fee/vb,1)+' sat/vB')+kvr('Size',f(vb)+' vB')+kvr('Weight',f(x.weight)+' WU')+kvr('Version',x.version)+kvr('Locktime',f(x.locktime))+`</dl>`}
 return head('Transaksi')+S('Detail',h,'',['tx:'+id])+S('Input dan output',x?txCard(x,true):'','',['tx:'+id])};
+const halvN=bl=>{const t=Array.isArray(bl)&&bl[0]?num(bl[0].height):null;return t==null?null:{t,nx:(Math.floor(t/210000)+1)*210000}};
+const halvingH=(bl,da)=>{const h=halvN(bl);if(!h)return '';const HV=210000,rem=h.nx-h.t,a=da?num(da.timeAvg):null,s=a>0?(a>1e4?a/1e3:a):600,sec=Math.max(480,Math.min(720,s)),eta=new Date(Date.now()+rem*sec*1e3),pg=(h.t%HV)/HV*100;
+return `<div class="prog"><u style="--w:${pg.toFixed(1)}%"></u></div>`+nums([['Progress',pg.toFixed(1)+'%'],['Remaining blocks',f(rem)],['Estimated date',eta.toLocaleDateString('id-ID',{month:'short',year:'numeric'})],['Reward after (BTC)',f2(50/Math.pow(2,h.nx/HV),4)]])};
+const halvingC=bl=>{const h=halvN(bl);return (h?'Block '+f(h.nx)+' · reward':'Reward')+' turun separuh tiap 210.000 block'};
 const P={
 block:blockPage,
 tx:txPage,
@@ -355,6 +361,7 @@ S('Recent block',Array.isArray(bl)&&bl.length?`<div class="bxrow">${bl.slice(0,8
 S('Reward stats',(rs?nums([['Miner reward (24h)',f(rs.totalReward/1e8)+' BTC'],['Avg block fee',(rs.totalFee/144/1e8).toFixed(3)+' BTC'],['Avg fee per tx',f(rs.totalFee/rs.totalTx)+' sat']]):'')+ch(rwa?bars([rwa.map(x=>x.avgRewards/1e8)],[C[2]],220,rwa.map(x=>dt(x.timestamp))):NA),'Block rewards chart (BTC per block, 1 bulan)',['rs','rw'])+
 S('Pools luck',luck?hb(luck,'%'):'','100% = sesuai ekspektasi',['pl','hp'])+
 S('Difficulty adjustment',da?`<div class="prog"><u style="--w:${da.progressPercent}%"></u></div>`+nums([['Progress',da.progressPercent.toFixed(1)+'%'],['Estimated change',(da.difficultyChange>0?'+':'')+da.difficultyChange.toFixed(2)+'%'],['Remaining blocks',f(da.remainingBlocks)],['Estimated date',new Date(da.estimatedRetargetDate).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})]]):'','',['da'])+
+S('Next halving',halvingH(bl,da),halvingC(bl),['bl','da'])+
 S('Last difficulty adjustment',da?nums([['Previous change',(da.previousRetarget>0?'+':'')+da.previousRetarget.toFixed(2)+'%'],...(hr&&hr.currentDifficulty?[['Current difficulty',(hr.currentDifficulty/1e12).toFixed(2)+' T']]:[]),...(hr&&hr.currentHashrate?[['Hashrate',(hr.currentHashrate/1e18).toFixed(0)+' EH/s']]:[])]):'','',['da','hr'])+
 S('Hashrate vs difficulty',ch(H?line([H,D],[C[0],C[1]],220,hl):NA)+lg([['Hashrate',C[0]],['Difficulty',C[1]]]),'Indeks, awal periode 3 bulan = 100',['hr'])+
 S('Pool ranking',hb(pr?pr.slice(0,10):null,' blocks'),'1 minggu terakhir',['pl'])+
@@ -470,7 +477,7 @@ const ae=document.activeElement;if(ae&&o.contains(ae)&&/^(INPUT|SELECT|TEXTAREA)
 const kv=capVals(o),sl=(o.querySelector('.blocks')||{}).scrollLeft;n.dataset.h=h;if(o.dataset.b==='1')n.classList.add('in');if(o.classList.contains('v'))n.classList.add('v');o.replaceWith(n);restVals(n,kv);const nb=n.querySelector('.blocks');if(nb&&sl)nb.scrollLeft=sl;ch=true});
 tkUi();if(ch)after()}
 
-function route(){const my=++rid;OB=-1;const hh=location.hash.slice(1)||'fee',sl=hh.indexOf('/');let r=sl>0?hh.slice(0,sl):hh;ARG=sl>0?hh.slice(sl+1):'';
+function route(){const my=++rid;OB=-1;tpHide();const hh=location.hash.slice(1)||'fee',sl=hh.indexOf('/');let r=sl>0?hh.slice(0,sl):hh;ARG=sl>0?hh.slice(sl+1):'';
 if(!P[r])r='fee';
 if(r==='block'&&!(hex64(ARG)||/^\d{1,7}$/.test(ARG)))r='mining';
 if(r==='tx'&&!hex64(ARG))r='mining';
@@ -499,17 +506,32 @@ document.addEventListener('input',e=>{const t=e.target;if(t.dataset&&t.dataset.c
 document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-bp]');if(!t)return;BP=+t.dataset.bp||0;route()});
 addEventListener('hashchange',route);
 $('mb').onclick=()=>{const o=$('nv').classList.toggle('o');$('mb').setAttribute('aria-expanded',String(o))};
-document.querySelector('.dd>button').onclick=e=>e.currentTarget.parentNode.classList.toggle('o');
+(()=>{const dd=document.querySelector('.dd'),bt=dd.querySelector('button');
+const shut=()=>{dd.classList.remove('o');bt.setAttribute('aria-expanded','false');const a=document.activeElement;if(a&&a!==document.body&&dd.contains(a))a.blur()};
+bt.onclick=()=>{dd.classList.remove('x');const o=dd.classList.toggle('o');bt.setAttribute('aria-expanded',String(o))};
+dd.addEventListener('click',e=>{if(e.target.closest('.sub a')){shut();dd.classList.add('x')}});
+dd.addEventListener('mouseleave',()=>{shut();dd.classList.remove('x')});
+document.addEventListener('click',e=>{if(!dd.contains(e.target))shut()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){shut();dd.classList.add('x');bt.blur()}})})();
 $('th').onclick=()=>{const d=document.documentElement,dark=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches,n=dark?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}};
 $('yr').textContent=new Date().getFullYear();
 (()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-const px=document.querySelector('.px');let q=0;
-const run=()=>{q=0;const y=Math.round(scrollY);if(px)px.style.setProperty('--sy',y);const h=document.querySelector('.hd');if(h)h.style.setProperty('--sy',y)};
-addEventListener('scroll',()=>{if(!q)q=requestAnimationFrame(run)},{passive:true});run();
+const A=$('app');let q=0,hd=null,L=[];
+const px=n=>'translate3d(0,'+Math.round(n)+'px,0)';
+const run=()=>{q=0;const vh=innerHeight||1,y=Math.max(0,scrollY),wide=innerWidth>820;
+if(hd){hd.style.transform=px(y*.22);hd.style.opacity=(1-Math.min(1,y/(vh*.7))).toFixed(2)}
+for(const o of L){const r=o.s.getBoundingClientRect();if(r.bottom<-160||r.top>vh+160)continue;
+const p=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));
+if(o.h)o.h.style.transform=wide?px(p*-44):'';
+if(o.b)o.b.style.transform=px(p*18)}};
+const go=()=>{if(!q)q=requestAnimationFrame(run)};
+const scan=()=>{hd=document.querySelector('#app .hd h1');L=[...A.querySelectorAll('.s')].map(s=>({s,h:s.querySelector('.sh'),b:s.querySelector('.sb')}));go()};
+addEventListener('scroll',go,{passive:true});addEventListener('resize',go);
+new MutationObserver(scan).observe(A,{childList:true});scan();
 if('IntersectionObserver' in window){document.documentElement.classList.add('rv');
 const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('v');io.unobserve(en.target)}}),{rootMargin:'0px 0px -6% 0px'});
-const scan=()=>document.querySelectorAll('#app .s:not(.v)').forEach(n=>io.observe(n));
-new MutationObserver(scan).observe($('app'),{childList:true});scan()}})();
+const sc=()=>document.querySelectorAll('#app .s:not(.v)').forEach(n=>io.observe(n));
+new MutationObserver(sc).observe(A,{childList:true});sc()}})();
 
 const tick=()=>{if(document.hidden)return;ld('all','/api/all',true);if(cur==='fee')ld('mb','/v1/fees/mempool-blocks',true)};
 setInterval(tick,60000);setInterval(tkUi,15000);
