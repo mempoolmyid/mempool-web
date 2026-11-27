@@ -1,0 +1,31 @@
+name = "mempool.my.id"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+# page.html dibaca sebagai teks lalu disajikan oleh Worker
+[[rules]]
+type = "Text"
+globs = ["**/*.html"]
+fallthrough = true
+
+[observability]
+enabled = true
+
+# Variabel publik (bukan rahasia). Rahasia diatur lewat `wrangler secret put` atau dashboard.
+[vars]
+SITE_NAME = "mempool.my.id"
+REPO_URL = ""                 # contoh: "https://github.com/USERNAME/mempool.my.id"
+TURNSTILE_SITEKEY = ""        # site key Turnstile (publik)
+DEFDOMAIN = ""                # opsional: domain workers.dev yang dialihkan
+CUSTDOMAIN = ""               # opsional: domain kustom tujuan
+
+# Database D1. database_id hanya pengenal, bukan kredensial (aman di repo).
+[[d1_databases]]
+binding = "stagingconnect"
+database_name = "btcfree"
+database_id = "c04e57ed-2aaa-46c8-a923-e09ef7b6098e"
+
+# Cron: tulis fee tiap menit, kurs tiap 5 menit, bersihkan riwayat tiap jam.
+[triggers]
+crons = ["* * * * *"]

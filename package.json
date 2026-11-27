@@ -1,0 +1,16 @@
+{
+  "name": "mempool.my.id",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dasbor & explorer Bitcoin live di Cloudflare Workers + D1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:schema": "wrangler d1 execute stagingconnect --remote --file=schema.sql",
+    "check": "wrangler deploy --dry-run --outdir=.wrangler/dryrun"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

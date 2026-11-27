@@ -1,0 +1,5 @@
+# Salin menjadi .dev.vars untuk `wrangler dev` (file .dev.vars TIDAK ikut ke Git).
+# Kunci uji Turnstile dari Cloudflare: selalu lolos.
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
