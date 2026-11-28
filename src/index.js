@@ -99,6 +99,7 @@ const ROUTES = [
   { re: /^\/v1\/difficulty-adjustment$/, ttl: 60 },
   { re: /^\/v1\/mining\/reward-stats\/144$/, ttl: 120 },
   { re: /^\/v1\/mining\/pools\/1w$/, ttl: 300 },
+  { re: /^\/v1\/mining\/pools\/24h$/, ttl: 300 },
   { re: /^\/v1\/mining\/hashrate\/pools\/1w$/, ttl: 900 },
   { re: /^\/v1\/mining\/hashrate\/3m$/, ttl: 900 },
   { re: /^\/v1\/mining\/blocks\/fees\/1m$/, ttl: 600 },

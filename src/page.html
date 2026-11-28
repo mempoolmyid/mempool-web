@@ -411,7 +411,8 @@ svg.cc.o0 [data-k="0"],svg.cc.o1 [data-k="1"],svg.cc.o2 [data-k="2"],svg.cc.o3 [
 .pie text{fill:var(--tx);font-size:12.5px;font-family:inherit}
 .s:has(.pie){grid-column:1/-1}
 /* u99-patch-1 */
-:root{--tM:#f28a1b;--tL:#0b8f86;--tN:#3cc8b8}
+/* u99-patch-2 */
+:root{--tM:#f28a1b;--tL:#fa7b7b;--tN:#dc3b45}
 .tl .tp,.tl .ts{text-shadow:0 1px 1px rgba(0,0,0,.28)}
 #app[data-p=fee] .bk.pb[aria-expanded=true] .col{box-shadow:inset 0 0 0 2px var(--tM)}
 #app[data-p=fee] .pb[aria-expanded=true] .lb b{color:var(--tM)}
@@ -484,7 +485,7 @@ return INF[k]=fetch(U(u),{signal:ac.signal}).then(r=>{if(!r.ok)throw 0;return r.
 const req=async u=>{const r=await fetch(U(u),{cache:'no-store'});if(!r.ok){const e=new Error('http');e.status=r.status;throw e}return r};
 const gj=async u=>(await req(u)).json(),gtx=async u=>(await req(u)).text();
 const NEED={fee:[['all','/api/all'],['mb','/v1/fees/mempool-blocks'],['mp','/mempool'],['rt','/mempool/recent'],['rp','/v1/replacements'],['bf','/v1/mining/blocks/fees/1m'],['fh','/api/history'],['bl','/v1/blocks'],['st','/v1/statistics/2h'],['rates','/api/rates']],
-mining:[['bl','/v1/blocks'],['rs','/v1/mining/reward-stats/144'],['rw','/v1/mining/blocks/rewards/1m'],['da','/v1/difficulty-adjustment'],['pl','/v1/mining/pools/1w'],['hr','/v1/mining/hashrate/3m'],['fr','/v1/mining/blocks/fee-rates/1m'],['hp','/v1/mining/hashrate/pools/1w'],['mn','/api/miners'],['sw','/v1/mining/blocks/sizes-weights/1m'],['bh','/v1/mining/blocks/predictions/1m']],
+mining:[['bl','/v1/blocks'],['rs','/v1/mining/reward-stats/144'],['rw','/v1/mining/blocks/rewards/1m'],['da','/v1/difficulty-adjustment'],['pl','/v1/mining/pools/1w'],['p24','/v1/mining/pools/24h'],['hr','/v1/mining/hashrate/3m'],['fr','/v1/mining/blocks/fee-rates/1m'],['hp','/v1/mining/hashrate/pools/1w'],['mn','/api/miners'],['sw','/v1/mining/blocks/sizes-weights/1m'],['bh','/v1/mining/blocks/predictions/1m']],
 block:()=>[['bl','/v1/blocks'],['mn','/api/miners']].concat(hex64(ARG)?[['bi:'+ARG,'/v1/block/'+ARG],['bt:'+ARG+':'+BP,'/block/'+ARG+'/txs'+(BP?'/'+BP:'')]]:[]),
 tx:()=>[['bl','/v1/blocks'],['tx:'+ARG,'/tx/'+ARG]],
 'stats-non':[['mp','/mempool'],['bl','/v1/blocks'],['sw','/v1/mining/blocks/sizes-weights/1m'],['st','/v1/statistics/2h']],
@@ -511,7 +512,7 @@ const al=a=>`<a class="mono lk" href="#explorer" data-s="${esc(a)}">${esc(a.leng
 let gid=0;
 const nf=v=>Math.abs(v)>=1e6?(v/1e6).toFixed(1)+'M':Math.abs(v)>=1e4?(v/1e3).toFixed(0)+'k':Math.abs(v)<10?(+v.toFixed(2))+'':Math.round(v)+'';
 const axis=(mn,mx,lb,h)=>[0,1,2,3].map(k=>{const y=h-18-k/3*(h-28);return `<line x1="40" x2="600" y1="${y}" y2="${y}"/><text x="34" y="${y+3}" text-anchor="end">${nf(mn+(mx-mn)*k/3)}</text>`}).join('')+(lb&&lb.length?[0,.5,1].map((k,i)=>`<text x="${[40,320,598][i]}" y="${h-4}" text-anchor="${['start','middle','end'][i]}">${esc(lb[Math.round(k*(lb.length-1))])}</text>`).join(''):'');
-const meta=(t,ds,lb,cols,r,x)=>`class="cc" viewBox="0 0 600 ${r[2]}" data-t="${t}" data-n="${ds.length}" data-d="${esc(JSON.stringify(ds.map(d=>d.map(v=>+(+v).toFixed(3)))))}" data-l="${esc(JSON.stringify(lb||[]))}" data-c="${cols.join()}" data-r="${r}"${x?` data-pw="${x.pw}" data-ax="${x.ax.join()}" data-mm="${esc(JSON.stringify(x.mm))}" data-u="${esc(JSON.stringify(x.un))}" data-nm="${esc(JSON.stringify(x.nm))}"`:''}`;
+const meta=(t,ds,lb,cols,r,x)=>`class="cc" viewBox="0 0 600 ${r[2]}" data-t="${t}" data-n="${ds.length}" data-d="${esc(JSON.stringify(ds.map(d=>d.map(v=>+(+v).toFixed(3)))))}" data-l="${esc(JSON.stringify(lb||[]))}" data-c="${cols.join()}" data-r="${r}"${x?` data-pw="${x.pw}" data-ax="${x.ax.join()}" data-mm="${esc(JSON.stringify(x.mm))}" data-u="${esc(JSON.stringify(x.un))}" data-nm="${esc(JSON.stringify(x.nm))}"${x.tl?` data-tl="${esc(JSON.stringify(x.tl))}"`:''}`:''}`;
 const line=(ds,cols=C,h=220,lb)=>{if(!ds[0]||ds[0].length<2||ds.some(d=>d.some(v=>!isFinite(v))))return NA;
 const n=ds[0].length,a=ds.flat(),mx=Math.max(...a),m0=Math.min(...a),mn=m0>=0&&m0<mx*.6?0:m0-(mx-m0)*.05,X=i=>40+i/(n-1)*554,Y=v=>h-18-(v-mn)/(mx-mn||1)*(h-28),id='g'+gid++;
 const p=d=>d.map((v,i)=>i?`C${(X(i-1)+X(i))/2} ${Y(d[i-1])} ${(X(i-1)+X(i))/2} ${Y(v)} ${X(i)} ${Y(v)}`:`M${X(0)} ${Y(v)}`).join('');
@@ -524,12 +525,12 @@ const mline=(ds,o)=>{o=o||{};
 const h=o.h||240,cols=o.cols||C,ax=o.ax||ds.map(()=>0),st=o.st||[],sw=o.sw||[],op=o.op||[],ar=o.area||[],lb=o.lb||[],fm=o.fm||[],un=o.un||[],nm=o.nm||[];
 if(!ds[0]||ds[0].length<2||ds.some(d=>d.length!==ds[0].length||d.some(v=>!isFinite(v))))return NA;
 const n=ds[0].length,two=ax.indexOf(1)>=0,PW=two?508:554,id='g'+gid++,
-mm=[0,1].map(g=>{const a=ds.filter((_,k)=>ax[k]===g).flat();if(!a.length)return [0,1];const mx=Math.max(...a),m0=Math.min(...a),pd=(mx-m0)*.08||Math.abs(mx)*.05||1;return [m0>=0&&m0<mx*.5?0:m0-pd,mx+pd*.4]}),
+mm=[0,1].map(g=>{if(o.rg&&o.rg[g])return o.rg[g];const a=ds.filter((_,k)=>ax[k]===g).flat();if(!a.length)return [0,1];const mx=Math.max(...a),m0=Math.min(...a),pd=(mx-m0)*.08||Math.abs(mx)*.05||1;return [m0>=0&&m0<mx*.5?0:m0-pd,mx+pd*.4]}),
 X=i=>40+i/(n-1)*PW,Y=(v,g)=>h-18-(v-mm[g][0])/((mm[g][1]-mm[g][0])||1)*(h-28),
 P=(d,g,s)=>d.map((v,i)=>{const y=Y(v,g);if(!i)return `M${X(0)} ${y}`;const y0=Y(d[i-1],g);return s?`L${X(i)} ${y0}L${X(i)} ${y}`:`C${(X(i-1)+X(i))/2} ${y0} ${(X(i-1)+X(i))/2} ${y} ${X(i)} ${y}`}).join(''),
-F=(g,k)=>(fm[g]||nf)(mm[g][0]+(mm[g][1]-mm[g][0])*k/3),
-grid=[0,1,2,3].map(k=>{const y=h-18-k/3*(h-28);return `<line x1="40" x2="${40+PW}" y1="${y}" y2="${y}"/><text x="34" y="${y+3}" text-anchor="end">${esc(F(0,k))}</text>`+(two?`<text x="${PW+46}" y="${y+3}" text-anchor="start">${esc(F(1,k))}</text>`:'')}).join('')+(lb.length?[0,.5,1].map((k,i)=>`<text x="${[40,40+PW/2,40+PW][i]}" y="${h-4}" text-anchor="${['start','middle','end'][i]}">${esc(lb[Math.round(k*(lb.length-1))])}</text>`).join(''):'');
-return `<svg ${meta('l',ds,lb,cols,[mm[0][0],mm[0][1],h],{pw:PW,ax,mm,un,nm})}><defs>${ds.map((_,k)=>ar[k]?`<linearGradient id="${id}${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cols[k]}" stop-opacity=".22"/><stop offset="1" stop-color="${cols[k]}" stop-opacity="0"/></linearGradient>`:'').join('')}</defs><g class="ax">${grid}</g>${ds.map((d,k)=>(ar[k]?`<path data-k="${k}" d="${P(d,ax[k],st[k])}L${X(n-1)} ${h-18}L40 ${h-18}Z" fill="url(#${id}${k})"/>`:'')+`<path data-k="${k}" d="${P(d,ax[k],st[k])}" fill="none" stroke="${cols[k]}" stroke-width="${sw[k]||2}" stroke-opacity="${op[k]==null?1:op[k]}" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`).join('')}<line class="xh" y1="4" y2="${h-18}"/><g class="dots">${ds.map((_,k)=>`<circle data-k="${k}" r="4" fill="${cols[k]}"/>`).join('')}</g></svg>`};
+F=(g,k)=>(fm[g]||nf)(mm[g][0]+(mm[g][1]-mm[g][0])*k/(o.tk||3)),
+grid=Array.from({length:(o.tk||3)+1},(_,k)=>k).map(k=>{const y=h-18-k/(o.tk||3)*(h-28);return `<line x1="40" x2="${40+PW}" y1="${y}" y2="${y}"/><text x="34" y="${y+3}" text-anchor="end">${esc(F(0,k))}</text>`+(two?`<text x="${PW+46}" y="${y+3}" text-anchor="start">${esc(F(1,k))}</text>`:'')}).join('')+(lb.length?[0,.5,1].map((k,i)=>`<text x="${[40,40+PW/2,40+PW][i]}" y="${h-4}" text-anchor="${['start','middle','end'][i]}">${esc(lb[Math.round(k*(lb.length-1))])}</text>`).join(''):'');
+return `<svg ${meta('l',ds,lb,cols,[mm[0][0],mm[0][1],h],{pw:PW,ax,mm,un,nm,tl:o.tl})}><defs>${ds.map((_,k)=>ar[k]?`<linearGradient id="${id}${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cols[k]}" stop-opacity=".22"/><stop offset="1" stop-color="${cols[k]}" stop-opacity="0"/></linearGradient>`:'').join('')}</defs><g class="ax">${grid}</g>${ds.map((d,k)=>(ar[k]?`<path data-k="${k}" d="${P(d,ax[k],st[k])}L${X(n-1)} ${h-18}L40 ${h-18}Z" fill="url(#${id}${k})"/>`:'')+`<path data-k="${k}" d="${P(d,ax[k],st[k])}" fill="none" stroke="${cols[k]}" stroke-width="${sw[k]||2}" stroke-opacity="${op[k]==null?1:op[k]}" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`).join('')}<line class="xh" y1="4" y2="${h-18}"/><g class="dots">${ds.map((_,k)=>`<circle data-k="${k}" r="4" fill="${cols[k]}"/>`).join('')}</g></svg>`};
 const swSvg=sw=>sw&&Array.isArray(sw.sizes)&&sw.sizes.length>1&&Array.isArray(sw.weights)&&sw.weights.length===sw.sizes.length?mline([sw.sizes.map(x=>x.avgSize/1e6),sw.weights.map(x=>x.avgWeight/1e6)],{cols:[C[0],C[1]],ax:[0,1],area:[1,0],lb:sw.sizes.map(x=>dt(tmOf(x))),fm:[v=>v.toFixed(2),v=>v.toFixed(2)],un:['MB','MWU'],nm:['Size','Weight']}):NA;
 const PIEC=['#d81b60','#8e24aa','#5e35b1','#3949ab','#1e88e5','#039be5','#00acc1','#00897b','#43a047','#7cb342','#c0ca33','#fdd835'];
 const poolPie=pr=>{if(!pr||!pr.length)return NA;const top=pr.slice(0,11).map(x=>[x[0],x[1]]),oth=pr.slice(11).reduce((s,x)=>s+x[1],0),r=oth>0?top.concat([['Lainnya',oth]]):top,t=r.reduce((s,x)=>s+x[1],0);if(!(t>0))return NA;
@@ -547,10 +548,10 @@ const on=s.classList.toggle('o'+k);if(on&&[...s.classList].filter(c=>/^o\d$/.tes
 b.classList.toggle('off',on);b.setAttribute('aria-pressed',on?'false':'true');if(s.dataset.t==='b')restack(s)});
 const tpShow=e=>{const s=e.target.closest&&e.target.closest('svg.cc'),t=$('tp');
 document.querySelectorAll('svg.cc.h').forEach(x=>{if(x!==s)x.classList.remove('h')});if(!s){t.style.opacity=0;return}
-const r=s.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600,d=JSON.parse(s.dataset.d),l=JSON.parse(s.dataset.l),c=s.dataset.c.split(','),[mn,mx,h]=s.dataset.r.split(',').map(Number),n=d[0].length,bar=s.dataset.t=='b',pw=+s.dataset.pw||554,ax=s.dataset.ax?s.dataset.ax.split(',').map(Number):[],mm=s.dataset.mm?JSON.parse(s.dataset.mm):[[mn,mx]],un=s.dataset.u?JSON.parse(s.dataset.u):[],nm=s.dataset.nm?JSON.parse(s.dataset.nm):[],off=k=>s.classList.contains('o'+k);
+const r=s.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600,d=JSON.parse(s.dataset.d),l=JSON.parse(s.dataset.l),c=s.dataset.c.split(','),[mn,mx,h]=s.dataset.r.split(',').map(Number),n=d[0].length,bar=s.dataset.t=='b',pw=+s.dataset.pw||554,ax=s.dataset.ax?s.dataset.ax.split(',').map(Number):[],mm=s.dataset.mm?JSON.parse(s.dataset.mm):[[mn,mx]],un=s.dataset.u?JSON.parse(s.dataset.u):[],nm=s.dataset.nm?JSON.parse(s.dataset.nm):[],tl=s.dataset.tl?JSON.parse(s.dataset.tl):null,off=k=>s.classList.contains('o'+k);
 let i=bar?Math.floor((vx-40)/(pw/n)):Math.round((vx-40)/pw*(n-1));i=Math.max(0,Math.min(n-1,i));
 if(!bar){const x=40+i/(n-1)*pw;s.querySelector('.xh').setAttribute('x1',x);s.querySelector('.xh').setAttribute('x2',x);s.querySelectorAll('.dots circle').forEach((o,k)=>{const g=mm[ax[k]||0]||mm[0];o.setAttribute('cx',x);o.setAttribute('cy',h-18-(d[k][i]-g[0])/((g[1]-g[0])||1)*(h-28))});s.classList.add('h')}
-t.innerHTML=esc(l[i]||'#'+(i+1))+'<br>'+d.map((x,k)=>off(k)?'':`<span style="color:${c[k]}">●</span> ${nm[k]?esc(nm[k])+': ':''}${(+x[i]).toLocaleString('id-ID',{maximumFractionDigits:3})}${un[k]?' '+esc(un[k]):''}`).filter(Boolean).join('<br>');
+t.innerHTML=esc((tl&&tl[i])||l[i]||'#'+(i+1)).replace(/\n/g,'<br>')+'<br>'+d.map((x,k)=>off(k)?'':`<span style="color:${c[k]}">●</span> ${nm[k]?esc(nm[k])+': ':''}${(+x[i]).toLocaleString('id-ID',{maximumFractionDigits:3})}${un[k]?' '+esc(un[k]):''}`).filter(Boolean).join('<br>');
 t.style.left=Math.min(e.clientX+14,innerWidth-180)+'px';t.style.top=Math.max(8,e.clientY-50)+'px';t.style.opacity=1};
 let tpT=0;
 const tpHide=()=>{clearTimeout(tpT);const t=$('tp');if(t)t.style.opacity=0;document.querySelectorAll('svg.cc.h').forEach(x=>x.classList.remove('h'))};
@@ -577,7 +578,7 @@ let h=`<span>SATS: <em class="u">${f(sat)} sats</em></span>`;
 if(up>0){h+=`<span>USD: <em>${mny(sat/1e8*up,'usd')}</em></span>`;
 if(CUR!=='usd'&&r[CUR]>0)h+=`<span>${esc(CUR.toUpperCase())}: <em>${mny(sat/1e8*r[CUR],CUR)}</em></span>`}
 return `<div class="tf">${h}</div>`};
-const TIERC=['#0ea860','#f28a1b','#0b8f86','#3cc8b8'];
+const TIERC=['#0ea860','#f28a1b','#fa7b7b','#dc3b45'];
 const tiersH=()=>{const q=FE();if(!q)return NA;return [['No Priority',q.economyFee,'var(--tN)','economy'],['Low',q.hourFee,'var(--tL)','~60 min'],['Medium',q.halfHourFee,'var(--tM)','~30 min'],['High',q.fastestFee,'var(--tH)','next block']].reverse().map(([n,v,c,s])=>{const t=f2(v);return `<div class="tl" style="--c:${c}"><span class="tp">${n}</span><div><strong class="tn" style="--l:${Math.max(3,t.length)}">${t}</strong><div class="tr"><span class="tu">sat/vB</span><span class="ts">${s}</span></div></div>${feeFoot(Math.ceil(v*TXV))}</div>`}).join('')};
 
 const rateAt=(fr,p)=>{if(!Array.isArray(fr)||fr.length<2)return null;const n=fr.length,qs=n===7?[0,.1,.25,.5,.75,.9,1]:fr.map((_,i)=>i/(n-1)),q=1-p;let i=0;while(i<n-2&&q>qs[i+1])i++;
@@ -712,12 +713,21 @@ const top=pr.slice(0,10).map(x=>[x[0],x[1]]),oth=pr.slice(10).reduce((s,x)=>s+x[
 const cx=110,cy=110,R=100,r0=60,pt=(a,q)=>[cx+Math.cos(a)*q,cy+Math.sin(a)*q];let a0=-Math.PI/2;
 const sl=r.map(([n,v],i)=>{const full=v/t*Math.PI*2,a=Math.min(full,Math.PI*2-.001),o={n,v,a0,a1:a0+a,m:a0+a/2,p:v/t*100,c:PIEC[Math.round(i*(PIEC.length-1)/Math.max(1,r.length-1))]};a0+=full;return o});
 const arc=s=>{const [x0,y0]=pt(s.a0,R),[x1,y1]=pt(s.a1,R),[x2,y2]=pt(s.a1,r0),[x3,y3]=pt(s.a0,r0),big=s.a1-s.a0>Math.PI?1:0,q=z=>z.toFixed(2);return `M${q(x0)} ${q(y0)}A${R} ${R} 0 ${big} 1 ${q(x1)} ${q(y1)}L${q(x2)} ${q(y2)}A${r0} ${r0} 0 ${big} 0 ${q(x3)} ${q(y3)}Z`};
-return `<div class="prk"><svg class="prd" viewBox="0 0 220 220" role="img" aria-label="Pool ranking">${sl.map(s=>`<path class="pz" d="${arc(s)}" fill="${s.c}" style="--tx:${(Math.cos(s.m)*6).toFixed(1)}px;--ty:${(Math.sin(s.m)*6).toFixed(1)}px"><title>${esc(s.n)}: ${f(s.v)} blok (${s.p.toFixed(2)}%)</title></path>`).join('')}<text class="pn" x="110" y="112">${f(t)}</text><text class="ps" x="110" y="128">blok · 1 minggu</text></svg><ul class="prl">${sl.map(s=>`<li><span><i style="--c:${s.c}"></i>${esc(s.n)}</span><b>${s.p.toFixed(2)}%</b></li>`).join('')}</ul></div>`}
+return `<div class="prk"><svg class="prd" viewBox="0 0 220 220" role="img" aria-label="Pool ranking">${sl.map(s=>`<path class="pz" d="${arc(s)}" fill="${s.c}" style="--tx:${(Math.cos(s.m)*6).toFixed(1)}px;--ty:${(Math.sin(s.m)*6).toFixed(1)}px"><title>${esc(s.n)}: ${f(s.v)} blok (${s.p.toFixed(2)}%)</title></path>`).join('')}<text class="pn" x="110" y="112">${f(t)}</text><text class="ps" x="110" y="128">blok · 24 jam</text></svg><ul class="prl">${sl.map(s=>`<li><span><i style="--c:${s.c}"></i>${esc(s.n)}</span><b>${s.p.toFixed(2)}%</b></li>`).join('')}</ul></div>`}
 function poolRankingCard(rs,pr){return (rs?rewardStatsHtml(rs):'')+(pr?poolRankCompact(pr):'')}
 function mempoolHistogramSeries(mp){if(!(mp&&Array.isArray(mp.fee_histogram)&&mp.fee_histogram.length))return null;const hg=mp.fee_histogram,k=Math.ceil(hg.length/30),v=[],l=[];for(let i=0;i<hg.length;i+=k){const g=hg.slice(i,i+k);v.push(g.reduce((s,x)=>s+x[1],0)/1e3);l.push(Math.round(g[0][0])+' sat/vB')}return {v:v.reverse(),l:l.reverse()}}
 function statsSeries(stt,fn){const a=Array.isArray(stt)&&stt.length>2?stt.filter(x=>num(x.added)!=null).sort((x,y)=>x.added-y.added):null;if(!a)return null;const k=Math.ceil(a.length/120),b=a.filter((_,i)=>i%k===0).filter(x=>num(fn(x))!=null);return b.length>2?b:null}
 function feeMempoolCharts(){const hist=mempoolHistogramSeries(L('mp')),vs=statsSeries(L('st'),x=>x.vbytes_per_second);
 return S('Mempool by vBytes (sat/vByte)',ch(hist?bars([hist.v],[C[1]],220,hist.l):NA),'kvB per fee rate range',['mp'])+S('Transaction vBytes per second (vB/s)',ch(vs?line([vs.map(x=>x.vbytes_per_second)],[C[1]],220,vs.map(x=>hm(x.added))):NA),'2 jam terakhir',['st'])}
+function blockHealthChart(raw){const pick=x=>{let t,v,h;
+if(Array.isArray(x)){t=+x[0];const r=x.slice(1).map(Number),pc=r.filter(y=>isFinite(y)&&y>=0&&y<=100);v=pc.find(y=>!Number.isInteger(y));if(v===undefined)v=pc[pc.length-1];h=r.find(y=>y>1e5)}
+else{t=+tmOf(x);v=+[x.matchRate,x.match_rate,x.avgMatchRate,x.avgBlockHealth,x.blockHealth,x.health].find(y=>y!=null);h=+(x.height!=null?x.height:x.blockHeight)}
+return {t:t>1e12?t/1e3:t,v:+v,h}};
+let q=raw.map(pick).filter(x=>isFinite(x.t)&&isFinite(x.v)).sort((a,b)=>a.t-b.t);
+if(q.length<2)return null;
+const sc=Math.max(...q.map(x=>x.v))<=1.0001?100:1,cap=240;
+if(q.length>cap){const k=Math.ceil(q.length/cap),b=[];for(let i=0;i<q.length;i+=k){const g=q.slice(i,i+k);b.push({t:g[g.length-1].t,v:g.reduce((s,x)=>s+x.v,0)/g.length,h:g[g.length-1].h})}q=b}
+return mline([q.map(x=>Math.max(0,Math.min(100,x.v*sc)))],{cols:[C[1]],area:[1],lb:q.map(x=>dt(x.t)),tl:q.map(x=>dtm(x.t)+(isFinite(x.h)?'\nBlock '+f(x.h):'')),rg:[[0,100]],tk:5,fm:[v=>Math.round(v)+'%'],un:['%'],nm:['Health']})}
 let ARG='',BP=0,LASTR='',HFAIL='';
 const hex64=s=>/^[0-9a-fA-F]{64}$/.test(s||'');
 const MS=()=>{const m=L('mn');return m&&Array.isArray(m.slugs)?m.slugs:[]};
@@ -794,19 +804,19 @@ S('Block fees vs subsidy',ch(bv?bars([bv.map(()=>3.125),bv],[C[1],C[0]],220,dl):
 
 mining:()=>{const bl=L('bl'),rs=L('rs'),rw=L('rw'),da=L('da'),pl=L('pl'),hr=L('hr'),fr=L('fr'),hp=L('hp');
 const pr=pl&&Array.isArray(pl.pools)&&pl.pools.length?pl.pools.map(p=>[p.name,p.blockCount,p.slug]):null,top=pr&&pr.slice(0,10),oth=pr&&pr.slice(10).reduce((s,x)=>s+x[1],0);
+const p24=L('p24'),pr24=p24&&Array.isArray(p24.pools)&&p24.pools.length?p24.pools.map(p=>[p.name,p.blockCount,p.slug]):null;
 let HX=null,BH=null;const bh=L('bh');
 if(hr&&Array.isArray(hr.hashrates)&&hr.hashrates.length>1&&Array.isArray(hr.difficulty)&&hr.difficulty.length){const hs=hr.hashrates.filter(x=>isFinite(+x.avgHashrate)&&tmOf(x)!=null),df=hr.difficulty.map(y=>({t:+tmOf(y),v:+y.difficulty})).filter(y=>isFinite(y.t)&&isFinite(y.v)).sort((a,b)=>a.t-b.t);
 if(hs.length>1&&df.length){const hv=hs.map(x=>x.avgHashrate/1e18),ma=hv.map((_,i)=>{const a=hv.slice(Math.max(0,i-6),i+1);return a.reduce((s,v)=>s+v,0)/a.length});let j=0,cur=df[0].v;const dv=hs.map(x=>{const t=+tmOf(x);while(j<df.length&&df[j].t<=t){cur=df[j].v;j++}return cur/1e12});
 HX=mline([hv,dv,ma],{cols:[C[2],C[3],C[0]],ax:[0,1,0],st:[0,1,0],sw:[1.2,2,2.6],op:[.75,1,1],lb:hs.map(x=>dt(tmOf(x))),fm:[v=>nf(v),v=>nf(v)+'T'],un:['EH/s','T','EH/s'],nm:['Hashrate','Difficulty','Hashrate (MA)']})}}
-if(Array.isArray(bh)&&bh.length>1){const q=bh.map(x=>{if(Array.isArray(x))return {t:+x[0],v:+x[1]};const v=[x.avgMatchRate,x.match_rate,x.matchRate,x.avgBlockHealth,x.blockHealth,x.health].find(y=>y!=null);return {t:+tmOf(x),v:+v}}).filter(x=>isFinite(x.t)&&isFinite(x.v)).sort((a,b)=>a.t-b.t);
-if(q.length>1){const sc=Math.max(...q.map(x=>x.v))<=1.0001?100:1;BH=mline([q.map(x=>x.v*sc)],{cols:[C[1]],area:[1],lb:q.map(x=>dt(x.t)),fm:[v=>v.toFixed(1)+'%'],un:['%'],nm:['Block health']})}}
+if(Array.isArray(bh)&&bh.length>1)BH=blockHealthChart(bh);
 
 let luck=null;if(pr&&Array.isArray(hp)&&hp.length){const tot={};let all=0;hp.forEach(x=>{const v=+x.avgHashrate||0;tot[x.poolName]=(tot[x.poolName]||0)+v;all+=v});const nb=pr.reduce((s,x)=>s+x[1],0);
 luck=pr.slice(0,8).map(([n,b,sg])=>tot[n]>0&&all>0?[n,Math.round(b/nb/(tot[n]/all)*100),sg]:null).filter(Boolean);if(!luck.length)luck=null}
 const dh=hr&&Array.isArray(hr.difficulty)&&hr.difficulty.length>1?hr.difficulty:null,frs=Array.isArray(fr)&&fr.length>1?fr:null,rwa=Array.isArray(rw)&&rw.length>1?rw:null;
 return head('Mining','Block terbaru, reward, pool, dan difficulty jaringan.')+
 S('Recent block',Array.isArray(bl)&&bl.length?`<div class="bxrow" id="mbr">${bl.slice(0,8).map(cube).join('')}</div><div class="ob" id="mob"><div class="obi" id="mobi"></div></div>`:'','',['bl','mn'],backButtonHtml())+
-S('Pool ranking',poolRankingCard(rs,pr),'1 minggu terakhir · reward 24 jam',['rs','pl'])+
+S('Pool ranking',poolRankingCard(rs,pr24),'24 jam terakhir',['rs','p24'])+
 S('Pools luck',luck?hb(luck,'%'):'','100% = sesuai ekspektasi',['pl','hp'])+
 S('Difficulty adjustment',da?`<div class="prog"><u style="--w:${da.progressPercent}%"></u></div>`+nums([['Progress',da.progressPercent.toFixed(1)+'%'],['Estimated change',(da.difficultyChange>0?'+':'')+da.difficultyChange.toFixed(2)+'%'],['Remaining blocks',f(da.remainingBlocks)],['Estimated date',new Date(da.estimatedRetargetDate).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})]])+countdownHtml(retargetTimeMs(da)):'','',['da'])+
 S('Next halving',halvingH(bl,da),halvingC(bl),['bl','da'])+
