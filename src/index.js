@@ -105,6 +105,7 @@ const ROUTES = [
   { re: /^\/v1\/mining\/blocks\/rewards\/1m$/, ttl: 600 },
   { re: /^\/v1\/mining\/blocks\/fee-rates\/1m$/, ttl: 900 },
   { re: /^\/v1\/mining\/blocks\/sizes-weights\/1m$/, ttl: 900 },
+  { re: /^\/v1\/mining\/blocks\/predictions\/1m$/, ttl: 900 }, // patch:chart-v1
   { re: /^\/v1\/lightning\/statistics\/3m$/, ttl: 900 },
   { re: /^\/v1\/lightning\/statistics\/latest$/, ttl: 600 },
   { re: /^\/v1\/lightning\/nodes\/isp-ranking$/, ttl: 1800 },

@@ -22,9 +22,9 @@ svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-widt
 
 /* ---------- header ungu (menu atas) ---------- */
 body{display:flex;flex-direction:column;min-height:100vh}
-header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:#a78bfa;color:#fff;box-shadow:0 2px 10px -4px rgba(60,30,140,.55)}
+header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:linear-gradient(165deg,#56b6ea,#299cdb 62%,#1b76a8);color:#fff;box-shadow:0 2px 10px -4px rgba(16,72,112,.5)}
 .bar{display:flex;align-items:center;gap:12px;min-height:66px;padding:0 24px}
-.logo{position:relative;display:block;flex:none;width:234px;height:30px;overflow:hidden;background:#a78bfa}
+.logo{position:relative;display:block;flex:none;width:234px;height:30px;overflow:hidden;background:transparent}
 .logo img{position:absolute;left:-17.9px;top:-28.9px;width:269.3px;height:89.8px;max-width:none}
 nav{display:flex;align-items:center;gap:2px;margin-left:14px;height:66px}
 nav a,nav .dd>button{display:flex;align-items:center;gap:6px;height:38px;padding:0 15px;background:none;border:0;border-radius:4px;color:rgba(255,255,255,.86);font:inherit;font-size:14.5px;font-weight:500;cursor:pointer;transition:background .2s,color .2s}
@@ -47,7 +47,7 @@ nav .sub a.on{background:var(--chip);color:var(--ac)}
 .ib:hover{background:rgba(255,255,255,.18)}
 .ib .tn{display:none}
 #mb{display:none}
-.tk{background:rgba(60,30,140,.26);border-top:1px solid rgba(255,255,255,.16)}
+.tk{background:rgba(8,52,88,.26);border-top:1px solid rgba(255,255,255,.16)}
 #tk{display:flex;gap:8px;align-items:center;height:38px;padding:0 24px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-size:12.5px;color:rgba(255,255,255,.85)}
 #tk::-webkit-scrollbar{display:none}
 #tk span{flex:none;padding:3px 10px;border-radius:4px;background:rgba(255,255,255,.16)}
@@ -296,9 +296,9 @@ select.cs{height:34px;margin-right:2px;padding:0 20px 0 8px;font-size:12px;backg
 @keyframes pbNew{from{flex-grow:0;flex-basis:0;min-width:0;margin-left:-14px;opacity:0}to{flex-grow:1;flex-basis:128px;min-width:128px;margin-left:0;opacity:1}}
 
 /* fee-ui-patch v6 */
-:root{--tH:#0ea860;--tM:#cf8e1d;--tL:#a98bf5;--tN:#7d6bd1;--fc:#e0457b;--hb:#f1ecfd;--hl:#e0d7fa;--ht:#4b3a8f;--hc:#7a6cb0}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--hb:rgba(167,139,250,.14);--hl:rgba(167,139,250,.26);--ht:#d9cdfb;--hc:#b4a6e0}}
-:root[data-theme=dark]{--hb:rgba(167,139,250,.14);--hl:rgba(167,139,250,.26);--ht:#d9cdfb;--hc:#b4a6e0}
+:root{--tH:#0ea860;--tM:#cf8e1d;--tL:#a98bf5;--tN:#7d6bd1;--fc:#e0457b;--hb:#fff1dd;--hl:#fbddb0;--ht:#8a4f0a;--hc:#a8692a}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--hb:rgba(247,184,75,.12);--hl:rgba(247,184,75,.24);--ht:#f7d79b;--hc:#d9b27a}}
+:root[data-theme=dark]{--hb:rgba(247,184,75,.12);--hl:rgba(247,184,75,.24);--ht:#f7d79b;--hc:#d9b27a}
 .t0{--tc:var(--tN)}.t1{--tc:var(--tL)}.t2{--tc:var(--tM)}.t3{--tc:var(--tH)}
 .pb .t0{--tc:var(--tN)}
 
@@ -327,7 +327,7 @@ select.cs{height:34px;margin-right:2px;padding:0 20px 0 8px;font-size:12px;backg
 /* detail block (Pending Transaction) */
 .obg{grid-template-columns:minmax(0,340px) minmax(0,1fr)}
 .kv .szd{flex:1;min-width:0;margin-left:18px;text-align:center}
-.szb{display:grid;place-items:center;height:22px;border-radius:4px;background:linear-gradient(90deg,#1e7bff,#8b3cf0);color:#fff;font-size:12.5px;font-weight:600}
+.szb{display:grid;place-items:center;height:22px;border-radius:4px;background:linear-gradient(90deg,#56b6ea,#1b76a8);color:#fff;font-size:12.5px;font-weight:600}
 .fcw .pt{margin-bottom:6px}
 .fc{display:block;width:100%;height:auto;overflow:visible;color:var(--tx)}
 .fc .gl{stroke:currentColor;opacity:.18;stroke-dasharray:3 4}
@@ -368,8 +368,8 @@ select.cs{height:34px;margin-right:2px;padding:0 20px 0 8px;font-size:12px;backg
 .bxio{grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr)}
 .ad{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;min-width:0}
 .tb{display:inline-block;font-size:10.5px;font-weight:600;line-height:1.5;padding:0 7px;border-radius:3px;background:var(--th);color:var(--mu);letter-spacing:.02em;white-space:nowrap}
-.tb.tm{background:color-mix(in srgb,#8b6ff0 20%,transparent);color:color-mix(in srgb,#8b6ff0 78%,var(--hd))}
-.ar2{display:grid;place-items:center;width:30px;height:30px;margin:0 2px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,var(--ac));color:#fff;box-shadow:0 6px 12px -6px var(--glow)}
+.tb.tm{background:color-mix(in srgb,#e8932f 20%,transparent);color:color-mix(in srgb,#e8932f 78%,var(--hd))}
+.ar2{display:grid;place-items:center;width:30px;height:30px;margin:0 2px;border-radius:50%;background:linear-gradient(135deg,#f6c885,var(--ac));color:#fff;box-shadow:0 6px 12px -6px var(--glow)}
 .ar2 svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .bxtf{align-items:center}
 .btcb{padding:4px 11px;border-radius:4px;font:700 12.5px var(--mo);color:var(--at);background:color-mix(in srgb,var(--ac) 14%,transparent);border:1px solid color-mix(in srgb,var(--ac) 40%,transparent)}
@@ -396,6 +396,20 @@ select.cs{height:34px;margin-right:2px;padding:0 20px 0 8px;font-size:12px;backg
 .nums:has(>div:nth-child(3):last-child)>div:first-child{padding-left:0!important;border-left:0!important}
 .nums:has(>div:nth-child(3):last-child) b{font-size:15px}
 .nums:has(>div:nth-child(3):last-child) span{font-size:9.5px;letter-spacing:.02em}}
+/* patch:chart-v1 */
+.lg{display:flex;flex-wrap:wrap;gap:2px 6px;margin-left:-8px}
+.lgb{font:inherit;color:inherit;background:none;border:0;padding:3px 8px;border-radius:4px;display:inline-flex;align-items:center;cursor:default}
+.sb:has(svg.cc:not([data-n="1"])) .lgb{cursor:pointer}
+.sb:has(svg.cc:not([data-n="1"])) .lgb:hover{background:var(--th)}
+.lgb.off{opacity:.45}.lgb.off i{background:var(--mu)}
+svg.cc.o0 [data-k="0"],svg.cc.o1 [data-k="1"],svg.cc.o2 [data-k="2"],svg.cc.o3 [data-k="3"],svg.cc.o4 [data-k="4"]{display:none}
+.pie{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pie svg{display:block;width:100%;min-width:640px;max-width:960px;height:auto;margin:0 auto;overflow:visible}
+.pie .pz{stroke:var(--bg2);stroke-width:1.5;cursor:pointer;transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+.pie .pz:hover,.pie .pz.sel{transform:translate(var(--tx),var(--ty))}
+.pie .ll{fill:none;stroke-width:1.2}
+.pie text{fill:var(--tx);font-size:12.5px;font-family:inherit}
+.s:has(.pie){grid-column:1/-1}
 </style></head><body>
 <a class="skip" href="#app">Lewati ke konten</a>
 <header><div class="bar"><a class="logo" href="#fee" aria-label="__SITE_NAME__"><img src="/asset/logo" alt="__SITE_NAME__" width="270" height="90" decoding="async"></a><nav id="nv" aria-label="Menu utama"><a href="#fee" data-r="fee">Fee</a><a href="#mining" data-r="mining">Mining</a><div class="dd"><button type="button" aria-haspopup="true" aria-expanded="false">Stats ▾</button><div class="sub"><a href="#stats-non" data-r="stats-non">On-chain</a><a href="#stats-ln" data-r="stats-ln">Lightning</a></div></div><a href="#explorer" data-r="explorer">Explorer</a><a href="#konverter" data-r="konverter">Konverter</a><a href="#kontak" data-r="kontak">Kontak</a></nav><form class="gs" id="gsf" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="gs" type="search" placeholder="Address / TXID / block…" aria-label="Cari address, TXID, block hash atau block height" autocomplete="off" autocapitalize="off" spellcheck="false"></form><div class="act"><button id="fs" class="ib" type="button" aria-label="Layar penuh"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button><select id="cu" class="cs" aria-label="Mata uang lokal"><option value="usd">USD</option></select><button id="th" class="ib" type="button" aria-label="Ganti tema"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span class="tn">Ganti tema</span></button><button id="mb" class="ib" type="button" aria-label="Menu" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h12M3 18h18"/></svg></button></div></div><div class="tk"><div id="tk" aria-live="off"></div></div></header>
@@ -435,7 +449,7 @@ return INF[k]=fetch(U(u),{signal:ac.signal}).then(r=>{if(!r.ok)throw 0;return r.
 const req=async u=>{const r=await fetch(U(u),{cache:'no-store'});if(!r.ok){const e=new Error('http');e.status=r.status;throw e}return r};
 const gj=async u=>(await req(u)).json(),gtx=async u=>(await req(u)).text();
 const NEED={fee:[['all','/api/all'],['mb','/v1/fees/mempool-blocks'],['mp','/mempool'],['rt','/mempool/recent'],['rp','/v1/replacements'],['bf','/v1/mining/blocks/fees/1m'],['fh','/api/history'],['bl','/v1/blocks'],['st','/v1/statistics/2h'],['rates','/api/rates']],
-mining:[['bl','/v1/blocks'],['rs','/v1/mining/reward-stats/144'],['rw','/v1/mining/blocks/rewards/1m'],['da','/v1/difficulty-adjustment'],['pl','/v1/mining/pools/1w'],['hr','/v1/mining/hashrate/3m'],['fr','/v1/mining/blocks/fee-rates/1m'],['hp','/v1/mining/hashrate/pools/1w'],['mn','/api/miners']],
+mining:[['bl','/v1/blocks'],['rs','/v1/mining/reward-stats/144'],['rw','/v1/mining/blocks/rewards/1m'],['da','/v1/difficulty-adjustment'],['pl','/v1/mining/pools/1w'],['hr','/v1/mining/hashrate/3m'],['fr','/v1/mining/blocks/fee-rates/1m'],['hp','/v1/mining/hashrate/pools/1w'],['mn','/api/miners'],['sw','/v1/mining/blocks/sizes-weights/1m'],['bh','/v1/mining/blocks/predictions/1m']],
 block:()=>[['bl','/v1/blocks'],['mn','/api/miners']].concat(hex64(ARG)?[['bi:'+ARG,'/v1/block/'+ARG],['bt:'+ARG+':'+BP,'/block/'+ARG+'/txs'+(BP?'/'+BP:'')]]:[]),
 tx:()=>[['bl','/v1/blocks'],['tx:'+ARG,'/tx/'+ARG]],
 'stats-non':[['mp','/mempool'],['bl','/v1/blocks'],['sw','/v1/mining/blocks/sizes-weights/1m'],['st','/v1/statistics/2h']],
@@ -444,14 +458,14 @@ konverter:[['rates','/api/rates']]};
 
 try{const b=JSON.parse($('boot').textContent);if(b&&b.fees)Cc.all={t:Date.now(),v:b}}catch(e){}
 
-const PC=['#299cdb','#0ab39c','#f7b84b','#a78bfa','#f06548','#66b9ea','#e0457b','#7fb83a','#c28b4e','#5b6ee1','#8b91a3'];
+const PC=['#299cdb','#0ab39c','#f7b84b','#ee9a47','#f06548','#66b9ea','#e0457b','#7fb83a','#c28b4e','#5b6ee1','#8b91a3'];
 const donut=r=>{const t=r.reduce((s,x)=>s+x[1],0);if(!(t>0))return NA;let o=0;
 return `<div class="dnw"><svg class="dns" viewBox="0 0 42 42" style="transform:rotate(-90deg)" role="img" aria-label="Pool dominance">${r.map(([n,v],i)=>{const l=v/t*100,s=`<circle class="dn" cx="21" cy="21" r="15.9" stroke="${PC[i%PC.length]}" stroke-width="5" pathLength="100" style="stroke-dasharray:${Math.max(0,l-.6).toFixed(2)} 100;stroke-dashoffset:${-o.toFixed(2)}"/>`;o+=l;return s}).join('')}</svg><ul class="dnl">${r.map(([n,v],i)=>`<li><span><i style="--c:${PC[i%PC.length]}"></i>${esc(n)}</span><b>${(v/t*100).toFixed(1)}%</b></li>`).join('')}</ul></div>`};
 const sk='<div class="sk" aria-busy="true"><i style="width:100%"></i><i style="width:86%"></i><i style="width:72%"></i><i style="width:92%"></i></div>';
 const busy=d=>!!d&&d.some(k=>PEND.has(k)&&L(k)==null);
 const S=(t,h,c,d)=>{const b=busy(d);return `<section class="s" data-b="${b?1:0}"><div class="sh"><h2>${t}</h2>${c?`<p class="cap">${c}</p>`:''}</div><div class="sb">${b?sk:(h||NA)}</div></section>`};
 const ch=s=>`<div class="ch">${s}</div>`;
-const lg=a=>`<p class="lg">${a.map(([n,c])=>`<i style="--c:${c}"></i>${n}`).join('')}</p>`;
+const lg=a=>`<p class="lg">${a.map(([n,c],k)=>`<button type="button" class="lgb" data-k="${k}" aria-pressed="true" title="Klik untuk tampil/sembunyikan"><i style="--c:${c}"></i>${n}</button>`).join('')}</p>`;
 const nums=a=>`<div class="nums">${a.map(([l,v])=>`<div><b>${v}</b><span>${l}</span></div>`).join('')}</div>`;
 const tbl=(h,r)=>`<div class="tw"><table><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join('')}</tr>`).join('')}</table></div>`;
 const hb=(r,u='')=>{if(!r||!r.length)return NA;const m=Math.max(...r.map(x=>x[1]))||1;return `<div class="hb">${r.map(([n,v,sg])=>`<div><span class="pc">${sg!=null?mlogo(sg,n):''}${esc(n)}</span><em><u style="--w:${(v/m*100).toFixed(1)}%"></u></em><b>${f(v)}${u}</b></div>`).join('')}</div>`};
@@ -462,20 +476,46 @@ const al=a=>`<a class="mono lk" href="#explorer" data-s="${esc(a)}">${esc(a.leng
 let gid=0;
 const nf=v=>Math.abs(v)>=1e6?(v/1e6).toFixed(1)+'M':Math.abs(v)>=1e4?(v/1e3).toFixed(0)+'k':Math.abs(v)<10?(+v.toFixed(2))+'':Math.round(v)+'';
 const axis=(mn,mx,lb,h)=>[0,1,2,3].map(k=>{const y=h-18-k/3*(h-28);return `<line x1="40" x2="600" y1="${y}" y2="${y}"/><text x="34" y="${y+3}" text-anchor="end">${nf(mn+(mx-mn)*k/3)}</text>`}).join('')+(lb&&lb.length?[0,.5,1].map((k,i)=>`<text x="${[40,320,598][i]}" y="${h-4}" text-anchor="${['start','middle','end'][i]}">${esc(lb[Math.round(k*(lb.length-1))])}</text>`).join(''):'');
-const meta=(t,ds,lb,cols,r)=>`class="cc" viewBox="0 0 600 ${r[2]}" data-t="${t}" data-d="${esc(JSON.stringify(ds.map(d=>d.map(v=>+(+v).toFixed(3)))))}" data-l="${esc(JSON.stringify(lb||[]))}" data-c="${cols.join()}" data-r="${r}"`;
+const meta=(t,ds,lb,cols,r,x)=>`class="cc" viewBox="0 0 600 ${r[2]}" data-t="${t}" data-n="${ds.length}" data-d="${esc(JSON.stringify(ds.map(d=>d.map(v=>+(+v).toFixed(3)))))}" data-l="${esc(JSON.stringify(lb||[]))}" data-c="${cols.join()}" data-r="${r}"${x?` data-pw="${x.pw}" data-ax="${x.ax.join()}" data-mm="${esc(JSON.stringify(x.mm))}" data-u="${esc(JSON.stringify(x.un))}" data-nm="${esc(JSON.stringify(x.nm))}"`:''}`;
 const line=(ds,cols=C,h=220,lb)=>{if(!ds[0]||ds[0].length<2||ds.some(d=>d.some(v=>!isFinite(v))))return NA;
 const n=ds[0].length,a=ds.flat(),mx=Math.max(...a),m0=Math.min(...a),mn=m0>=0&&m0<mx*.6?0:m0-(mx-m0)*.05,X=i=>40+i/(n-1)*554,Y=v=>h-18-(v-mn)/(mx-mn||1)*(h-28),id='g'+gid++;
 const p=d=>d.map((v,i)=>i?`C${(X(i-1)+X(i))/2} ${Y(d[i-1])} ${(X(i-1)+X(i))/2} ${Y(v)} ${X(i)} ${Y(v)}`:`M${X(0)} ${Y(v)}`).join('');
-return `<svg ${meta('l',ds,lb,cols,[mn,mx,h])}><defs>${ds.map((_,k)=>`<linearGradient id="${id}${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cols[k]}" stop-opacity=".22"/><stop offset="1" stop-color="${cols[k]}" stop-opacity="0"/></linearGradient>`).join('')}</defs><g class="ax">${axis(mn,mx,lb,h)}</g>${ds.map((d,k)=>`<path d="${p(d)}L${X(n-1)} ${h-18}L40 ${h-18}Z" fill="url(#${id}${k})"/><path d="${p(d)}" fill="none" stroke="${cols[k]}" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`).join('')}<line class="xh" y1="4" y2="${h-18}"/><g class="dots">${ds.map((_,k)=>`<circle r="4" fill="${cols[k]}"/>`).join('')}</g></svg>`};
+return `<svg ${meta('l',ds,lb,cols,[mn,mx,h])}><defs>${ds.map((_,k)=>`<linearGradient id="${id}${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cols[k]}" stop-opacity=".22"/><stop offset="1" stop-color="${cols[k]}" stop-opacity="0"/></linearGradient>`).join('')}</defs><g class="ax">${axis(mn,mx,lb,h)}</g>${ds.map((d,k)=>`<path data-k="${k}" d="${p(d)}L${X(n-1)} ${h-18}L40 ${h-18}Z" fill="url(#${id}${k})"/><path data-k="${k}" d="${p(d)}" fill="none" stroke="${cols[k]}" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`).join('')}<line class="xh" y1="4" y2="${h-18}"/><g class="dots">${ds.map((_,k)=>`<circle data-k="${k}" r="4" fill="${cols[k]}"/>`).join('')}</g></svg>`};
 const bars=(ds,cols=C,h=220,lb)=>{if(!ds[0]||!ds[0].length||ds.some(d=>d.some(v=>!isFinite(v))))return NA;
 const n=ds[0].length,w=554/n,mx=Math.max(...ds[0].map((_,i)=>ds.reduce((s,d)=>s+d[i],0)))||1;
-return `<svg ${meta('b',ds,lb,cols,[0,mx,h])}><g class="ax">${axis(0,mx,lb,h)}</g>${ds[0].map((_,i)=>{let y=h-18;return ds.map((d,k)=>{const hh=d[i]/mx*(h-28);y-=hh;return `<rect x="${40+i*w+w*.1}" y="${y}" width="${w*.8}" height="${hh}" fill="${cols[k]}"/>`}).join('')}).join('')}</svg>`};
+return `<svg ${meta('b',ds,lb,cols,[0,mx,h])}><g class="ax">${axis(0,mx,lb,h)}</g>${ds[0].map((_,i)=>{let y=h-18;return ds.map((d,k)=>{const hh=d[i]/mx*(h-28);y-=hh;return `<rect x="${40+i*w+w*.1}" y="${y}" width="${w*.8}" height="${hh}" fill="${cols[k]}" data-k="${k}" data-i="${i}"/>`}).join('')}).join('')}</svg>`};
+const tmOf=x=>x&&(x.timestamp!=null?x.timestamp:x.time!=null?x.time:x.blockTimestamp);
+const mline=(ds,o)=>{o=o||{};
+const h=o.h||240,cols=o.cols||C,ax=o.ax||ds.map(()=>0),st=o.st||[],sw=o.sw||[],op=o.op||[],ar=o.area||[],lb=o.lb||[],fm=o.fm||[],un=o.un||[],nm=o.nm||[];
+if(!ds[0]||ds[0].length<2||ds.some(d=>d.length!==ds[0].length||d.some(v=>!isFinite(v))))return NA;
+const n=ds[0].length,two=ax.indexOf(1)>=0,PW=two?508:554,id='g'+gid++,
+mm=[0,1].map(g=>{const a=ds.filter((_,k)=>ax[k]===g).flat();if(!a.length)return [0,1];const mx=Math.max(...a),m0=Math.min(...a),pd=(mx-m0)*.08||Math.abs(mx)*.05||1;return [m0>=0&&m0<mx*.5?0:m0-pd,mx+pd*.4]}),
+X=i=>40+i/(n-1)*PW,Y=(v,g)=>h-18-(v-mm[g][0])/((mm[g][1]-mm[g][0])||1)*(h-28),
+P=(d,g,s)=>d.map((v,i)=>{const y=Y(v,g);if(!i)return `M${X(0)} ${y}`;const y0=Y(d[i-1],g);return s?`L${X(i)} ${y0}L${X(i)} ${y}`:`C${(X(i-1)+X(i))/2} ${y0} ${(X(i-1)+X(i))/2} ${y} ${X(i)} ${y}`}).join(''),
+F=(g,k)=>(fm[g]||nf)(mm[g][0]+(mm[g][1]-mm[g][0])*k/3),
+grid=[0,1,2,3].map(k=>{const y=h-18-k/3*(h-28);return `<line x1="40" x2="${40+PW}" y1="${y}" y2="${y}"/><text x="34" y="${y+3}" text-anchor="end">${esc(F(0,k))}</text>`+(two?`<text x="${PW+46}" y="${y+3}" text-anchor="start">${esc(F(1,k))}</text>`:'')}).join('')+(lb.length?[0,.5,1].map((k,i)=>`<text x="${[40,40+PW/2,40+PW][i]}" y="${h-4}" text-anchor="${['start','middle','end'][i]}">${esc(lb[Math.round(k*(lb.length-1))])}</text>`).join(''):'');
+return `<svg ${meta('l',ds,lb,cols,[mm[0][0],mm[0][1],h],{pw:PW,ax,mm,un,nm})}><defs>${ds.map((_,k)=>ar[k]?`<linearGradient id="${id}${k}" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cols[k]}" stop-opacity=".22"/><stop offset="1" stop-color="${cols[k]}" stop-opacity="0"/></linearGradient>`:'').join('')}</defs><g class="ax">${grid}</g>${ds.map((d,k)=>(ar[k]?`<path data-k="${k}" d="${P(d,ax[k],st[k])}L${X(n-1)} ${h-18}L40 ${h-18}Z" fill="url(#${id}${k})"/>`:'')+`<path data-k="${k}" d="${P(d,ax[k],st[k])}" fill="none" stroke="${cols[k]}" stroke-width="${sw[k]||2}" stroke-opacity="${op[k]==null?1:op[k]}" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`).join('')}<line class="xh" y1="4" y2="${h-18}"/><g class="dots">${ds.map((_,k)=>`<circle data-k="${k}" r="4" fill="${cols[k]}"/>`).join('')}</g></svg>`};
+const swSvg=sw=>sw&&Array.isArray(sw.sizes)&&sw.sizes.length>1&&Array.isArray(sw.weights)&&sw.weights.length===sw.sizes.length?mline([sw.sizes.map(x=>x.avgSize/1e6),sw.weights.map(x=>x.avgWeight/1e6)],{cols:[C[0],C[1]],ax:[0,1],area:[1,0],lb:sw.sizes.map(x=>dt(tmOf(x))),fm:[v=>v.toFixed(2),v=>v.toFixed(2)],un:['MB','MWU'],nm:['Size','Weight']}):NA;
+const PIEC=['#d81b60','#8e24aa','#5e35b1','#3949ab','#1e88e5','#039be5','#00acc1','#00897b','#43a047','#7cb342','#c0ca33','#fdd835'];
+const poolPie=pr=>{if(!pr||!pr.length)return NA;const top=pr.slice(0,11).map(x=>[x[0],x[1]]),oth=pr.slice(11).reduce((s,x)=>s+x[1],0),r=oth>0?top.concat([['Lainnya',oth]]):top,t=r.reduce((s,x)=>s+x[1],0);if(!(t>0))return NA;
+const W=800,H=440,cx=W/2,cy=H/2,R=150,r0=40,gap=17,pt=(a,q)=>[cx+Math.cos(a)*q,cy+Math.sin(a)*q];let a0=-Math.PI/2;
+const sl=r.map(([n,v],i)=>{const a=v/t*Math.PI*2,a1=a0+a,m=(a0+a1)/2,o={n,v,i,a0,a1,m,p:v/t*100,c:PIEC[Math.round(i*(PIEC.length-1)/Math.max(1,r.length-1))]};a0=a1;return o});
+const arc=s=>{const [x0,y0]=pt(s.a0,R),[x1,y1]=pt(s.a1,R),[x2,y2]=pt(s.a1,r0),[x3,y3]=pt(s.a0,r0),big=s.a1-s.a0>Math.PI?1:0;return `M${x0} ${y0}A${R} ${R} 0 ${big} 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 ${big} 0 ${x3} ${y3}Z`};
+const side={'1':[],'-1':[]};sl.forEach(s=>{s.sg=Math.cos(s.m)>=0?1:-1;s.ly=cy+Math.sin(s.m)*(R+24);side[s.sg].push(s)});
+[1,-1].forEach(g=>{const a=side[g].sort((x,y)=>x.ly-y.ly);a.forEach((s,i)=>{s.ly=Math.max(14,s.ly);if(i&&s.ly-a[i-1].ly<gap)s.ly=a[i-1].ly+gap});const L=a.length;if(L&&a[L-1].ly>H-10){a[L-1].ly=H-10;for(let i=L-2;i>=0;i--)if(a[i+1].ly-a[i].ly<gap)a[i].ly=a[i+1].ly-gap}});
+return `<div class="pie"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Pool ranking">${sl.map(s=>{const [ax,ay]=pt(s.m,R),ex=cx+s.sg*(R+28),lx=ex+s.sg*16;return `<g><path class="pz" d="${arc(s)}" fill="${s.c}" style="--tx:${(Math.cos(s.m)*7).toFixed(1)}px;--ty:${(Math.sin(s.m)*7).toFixed(1)}px"><title>${esc(s.n)}: ${f(s.v)} blok (${s.p.toFixed(2)}%)</title></path><path class="ll" d="M${ax} ${ay}L${ex} ${s.ly}L${lx} ${s.ly}" stroke="${s.c}"/><text x="${lx+s.sg*5}" y="${s.ly+4}" text-anchor="${s.sg>0?'start':'end'}">${esc(s.n)} (${s.p.toFixed(2)}%)</text></g>`}).join('')}</svg></div>`};
+const restack=s=>{const d=JSON.parse(s.dataset.d),mx=+s.dataset.r.split(',')[1],h=+s.dataset.r.split(',')[2];
+d[0].forEach((_,i)=>{let y=h-18;d.forEach((dk,k)=>{const q=s.querySelector(`rect[data-i="${i}"][data-k="${k}"]`);if(!q||s.classList.contains('o'+k))return;const hh=dk[i]/(mx||1)*(h-28);y-=hh;q.setAttribute('y',y)})})};
+document.addEventListener('click',e=>{const z=e.target.closest&&e.target.closest('.pie .pz');if(z){z.classList.toggle('sel');return}
+const b=e.target.closest&&e.target.closest('.lgb');if(!b)return;const sb=b.closest('.sb'),s=sb&&sb.querySelector('svg.cc[data-n]'),n=s?+s.dataset.n:0,k=+b.dataset.k;if(!s||n<2||!(k>=0&&k<n))return;
+const on=s.classList.toggle('o'+k);if(on&&[...s.classList].filter(c=>/^o\d$/.test(c)).length>=n){s.classList.remove('o'+k);return}
+b.classList.toggle('off',on);b.setAttribute('aria-pressed',on?'false':'true');if(s.dataset.t==='b')restack(s)});
 const tpShow=e=>{const s=e.target.closest&&e.target.closest('svg.cc'),t=$('tp');
 document.querySelectorAll('svg.cc.h').forEach(x=>{if(x!==s)x.classList.remove('h')});if(!s){t.style.opacity=0;return}
-const r=s.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600,d=JSON.parse(s.dataset.d),l=JSON.parse(s.dataset.l),c=s.dataset.c.split(','),[mn,mx,h]=s.dataset.r.split(',').map(Number),n=d[0].length,bar=s.dataset.t=='b';
-let i=bar?Math.floor((vx-40)/(554/n)):Math.round((vx-40)/554*(n-1));i=Math.max(0,Math.min(n-1,i));
-if(!bar){const x=40+i/(n-1)*554;s.querySelector('.xh').setAttribute('x1',x);s.querySelector('.xh').setAttribute('x2',x);s.querySelectorAll('.dots circle').forEach((o,k)=>{o.setAttribute('cx',x);o.setAttribute('cy',h-18-(d[k][i]-mn)/(mx-mn||1)*(h-28))});s.classList.add('h')}
-t.innerHTML=esc(l[i]||'#'+(i+1))+'<br>'+d.map((x,k)=>`<span style="color:${c[k]}">●</span> ${(+x[i]).toLocaleString('id-ID',{maximumFractionDigits:3})}`).join('<br>');
+const r=s.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*600,d=JSON.parse(s.dataset.d),l=JSON.parse(s.dataset.l),c=s.dataset.c.split(','),[mn,mx,h]=s.dataset.r.split(',').map(Number),n=d[0].length,bar=s.dataset.t=='b',pw=+s.dataset.pw||554,ax=s.dataset.ax?s.dataset.ax.split(',').map(Number):[],mm=s.dataset.mm?JSON.parse(s.dataset.mm):[[mn,mx]],un=s.dataset.u?JSON.parse(s.dataset.u):[],nm=s.dataset.nm?JSON.parse(s.dataset.nm):[],off=k=>s.classList.contains('o'+k);
+let i=bar?Math.floor((vx-40)/(pw/n)):Math.round((vx-40)/pw*(n-1));i=Math.max(0,Math.min(n-1,i));
+if(!bar){const x=40+i/(n-1)*pw;s.querySelector('.xh').setAttribute('x1',x);s.querySelector('.xh').setAttribute('x2',x);s.querySelectorAll('.dots circle').forEach((o,k)=>{const g=mm[ax[k]||0]||mm[0];o.setAttribute('cx',x);o.setAttribute('cy',h-18-(d[k][i]-g[0])/((g[1]-g[0])||1)*(h-28))});s.classList.add('h')}
+t.innerHTML=esc(l[i]||'#'+(i+1))+'<br>'+d.map((x,k)=>off(k)?'':`<span style="color:${c[k]}">●</span> ${nm[k]?esc(nm[k])+': ':''}${(+x[i]).toLocaleString('id-ID',{maximumFractionDigits:3})}${un[k]?' '+esc(un[k]):''}`).filter(Boolean).join('<br>');
 t.style.left=Math.min(e.clientX+14,innerWidth-180)+'px';t.style.top=Math.max(8,e.clientY-50)+'px';t.style.opacity=1};
 let tpT=0;
 const tpHide=()=>{clearTimeout(tpT);const t=$('tp');if(t)t.style.opacity=0;document.querySelectorAll('svg.cc.h').forEach(x=>x.classList.remove('h'))};
@@ -681,22 +721,29 @@ S('Block fees vs subsidy',ch(bv?bars([bv.map(()=>3.125),bv],[C[1],C[0]],220,dl):
 
 mining:()=>{const bl=L('bl'),rs=L('rs'),rw=L('rw'),da=L('da'),pl=L('pl'),hr=L('hr'),fr=L('fr'),hp=L('hp');
 const pr=pl&&Array.isArray(pl.pools)&&pl.pools.length?pl.pools.map(p=>[p.name,p.blockCount,p.slug]):null,top=pr&&pr.slice(0,10),oth=pr&&pr.slice(10).reduce((s,x)=>s+x[1],0);
-let H,D,hl;if(hr&&Array.isArray(hr.hashrates)&&hr.hashrates.length>1&&Array.isArray(hr.difficulty)&&hr.difficulty.length){const h0=hr.hashrates[0].avgHashrate;H=hr.hashrates.map(x=>x.avgHashrate/h0*100);const d0=hr.difficulty[0].difficulty;D=hr.hashrates.map(x=>{let v=d0;for(const y of hr.difficulty)if(y.timestamp<=x.timestamp)v=y.difficulty;return v/d0*100});hl=hr.hashrates.map(x=>dt(x.timestamp))}
+let HX=null,BH=null;const bh=L('bh');
+if(hr&&Array.isArray(hr.hashrates)&&hr.hashrates.length>1&&Array.isArray(hr.difficulty)&&hr.difficulty.length){const hs=hr.hashrates.filter(x=>isFinite(+x.avgHashrate)&&tmOf(x)!=null),df=hr.difficulty.map(y=>({t:+tmOf(y),v:+y.difficulty})).filter(y=>isFinite(y.t)&&isFinite(y.v)).sort((a,b)=>a.t-b.t);
+if(hs.length>1&&df.length){const hv=hs.map(x=>x.avgHashrate/1e18),ma=hv.map((_,i)=>{const a=hv.slice(Math.max(0,i-6),i+1);return a.reduce((s,v)=>s+v,0)/a.length});let j=0,cur=df[0].v;const dv=hs.map(x=>{const t=+tmOf(x);while(j<df.length&&df[j].t<=t){cur=df[j].v;j++}return cur/1e12});
+HX=mline([hv,dv,ma],{cols:[C[2],C[3],C[0]],ax:[0,1,0],st:[0,1,0],sw:[1.2,2,2.6],op:[.75,1,1],lb:hs.map(x=>dt(tmOf(x))),fm:[v=>nf(v),v=>nf(v)+'T'],un:['EH/s','T','EH/s'],nm:['Hashrate','Difficulty','Hashrate (MA)']})}}
+if(Array.isArray(bh)&&bh.length>1){const q=bh.map(x=>{if(Array.isArray(x))return {t:+x[0],v:+x[1]};const v=[x.avgMatchRate,x.match_rate,x.matchRate,x.avgBlockHealth,x.blockHealth,x.health].find(y=>y!=null);return {t:+tmOf(x),v:+v}}).filter(x=>isFinite(x.t)&&isFinite(x.v)).sort((a,b)=>a.t-b.t);
+if(q.length>1){const sc=Math.max(...q.map(x=>x.v))<=1.0001?100:1;BH=mline([q.map(x=>x.v*sc)],{cols:[C[1]],area:[1],lb:q.map(x=>dt(x.t)),fm:[v=>v.toFixed(1)+'%'],un:['%'],nm:['Block health']})}}
 
 let luck=null;if(pr&&Array.isArray(hp)&&hp.length){const tot={};let all=0;hp.forEach(x=>{const v=+x.avgHashrate||0;tot[x.poolName]=(tot[x.poolName]||0)+v;all+=v});const nb=pr.reduce((s,x)=>s+x[1],0);
 luck=pr.slice(0,8).map(([n,b,sg])=>tot[n]>0&&all>0?[n,Math.round(b/nb/(tot[n]/all)*100),sg]:null).filter(Boolean);if(!luck.length)luck=null}
 const dh=hr&&Array.isArray(hr.difficulty)&&hr.difficulty.length>1?hr.difficulty:null,frs=Array.isArray(fr)&&fr.length>1?fr:null,rwa=Array.isArray(rw)&&rw.length>1?rw:null;
 return head('Mining','Block terbaru, reward, pool, dan difficulty jaringan.')+
 S('Recent block',Array.isArray(bl)&&bl.length?`<div class="bxrow" id="mbr">${bl.slice(0,8).map(cube).join('')}</div><div class="ob" id="mob"><div class="obi" id="mobi"></div></div>`:'','',['bl','mn'])+
-S('Reward stats',(rs?nums([['Miner reward (24h)',f(rs.totalReward/1e8)+' BTC'],['Avg block fee',(rs.totalFee/144/1e8).toFixed(3)+' BTC'],['Avg fee per tx',f(rs.totalFee/rs.totalTx)+' sat']]):'')+ch(rwa?bars([rwa.map(x=>x.avgRewards/1e8)],[C[2]],220,rwa.map(x=>dt(x.timestamp))):NA),'Block rewards chart (BTC per block, 1 bulan)',['rs','rw'])+
+S('Reward stats',(rs?nums([['Miner reward (24h)',f(rs.totalReward/1e8)+' BTC'],['Avg block fee',(rs.totalFee/144/1e8).toFixed(3)+' BTC'],['Avg fee per tx',f(rs.totalFee/rs.totalTx)+' sat']]):''),'',['rs'])+
 S('Pools luck',luck?hb(luck,'%'):'','100% = sesuai ekspektasi',['pl','hp'])+
 S('Difficulty adjustment',da?`<div class="prog"><u style="--w:${da.progressPercent}%"></u></div>`+nums([['Progress',da.progressPercent.toFixed(1)+'%'],['Estimated change',(da.difficultyChange>0?'+':'')+da.difficultyChange.toFixed(2)+'%'],['Remaining blocks',f(da.remainingBlocks)],['Estimated date',new Date(da.estimatedRetargetDate).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})]]):'','',['da'])+
 S('Next halving',halvingH(bl,da),halvingC(bl),['bl','da'])+
-S('Last difficulty adjustment',da?nums([['Previous change',(da.previousRetarget>0?'+':'')+da.previousRetarget.toFixed(2)+'%'],...(hr&&hr.currentDifficulty?[['Current difficulty',(hr.currentDifficulty/1e12).toFixed(2)+' T']]:[]),...(hr&&hr.currentHashrate?[['Hashrate',(hr.currentHashrate/1e18).toFixed(0)+' EH/s']]:[])])+(dh?`<p class="pt" style="margin:24px 0 8px">Difficulty tiap adjustment (T) · 3 bulan</p>`+ch(line([dh.map(x=>x.difficulty/1e12)],[C[2]],200,dh.map(x=>dt(x.timestamp)))):''):'','',['da','hr'])+
-S('Hashrate vs difficulty',ch(H?line([H,D],[C[0],C[1]],220,hl):NA)+lg([['Hashrate',C[0]],['Difficulty',C[1]]]),'Indeks, awal periode 3 bulan = 100',['hr'])+
-S('Pool ranking',hb(pr?pr.slice(0,10):null,' blocks'),'1 minggu terakhir',['pl'])+
-S('Pool dominance',pr?donut([...top,...(oth>0?[['Lainnya',oth]]:[])]):'','',['pl'])+
-S('Block fee rates',ch(frs?line([frs.map(x=>x.avgFee_90),frs.map(x=>x.avgFee_50),frs.map(x=>x.avgFee_10)],C,220,frs.map(x=>dt(x.timestamp))):NA)+lg([['90th percentile',C[0]],['Median',C[1]],['10th percentile',C[2]]]),'sat/vB, 1 bulan',['fr'])},
+S('Last difficulty adjustment',da?nums([['Previous change',(da.previousRetarget>0?'+':'')+da.previousRetarget.toFixed(2)+'%'],...(hr&&hr.currentDifficulty?[['Current difficulty',(hr.currentDifficulty/1e12).toFixed(2)+' T']]:[]),...(hr&&hr.currentHashrate?[['Hashrate',(hr.currentHashrate/1e18).toFixed(0)+' EH/s']]:[])])+(dh?`<p class="pt" style="margin:24px 0 8px">Difficulty tiap adjustment (T) · 3 bulan</p>`+ch(line([dh.map(x=>x.difficulty/1e12)],[C[2]],200,dh.map(x=>dt(tmOf(x))))):''):'','',['da','hr'])+
+S('Hashrate vs difficulty',ch(HX||NA)+lg([['Hashrate',C[2]],['Difficulty',C[3]],['Hashrate (MA 7 hari)',C[0]]]),'Hashrate EH/s (kiri) · Difficulty T (kanan) · 3 bulan',['hr'])+
+S('Pool ranking',pr?poolPie(pr):'','1 minggu terakhir',['pl'])+
+S('Block fee rates',ch(frs?line([frs.map(x=>x.avgFee_90),frs.map(x=>x.avgFee_50),frs.map(x=>x.avgFee_10)],C,220,frs.map(x=>dt(x.timestamp))):NA)+lg([['90th percentile',C[0]],['Median',C[1]],['10th percentile',C[2]]]),'sat/vB, 1 bulan',['fr'])+
+S('Block sizes and weights',ch(swSvg(L('sw')))+lg([['Size (MB)',C[0]],['Weight (MWU)',C[1]]]),'Size MB (kiri) · Weight MWU (kanan) · 1 bulan',['sw'])+
+S('Block rewards',ch(rwa?mline([rwa.map(x=>x.avgRewards/1e8)],{cols:[C[3]],area:[1],lb:rwa.map(x=>dt(tmOf(x))),fm:[v=>v.toFixed(2)],un:['BTC'],nm:['Reward']}):NA),'BTC per block (subsidy + fee), 1 bulan',['rw'])+
+S('Block health',ch(BH||NA),'% blok yang cocok dengan prediksi template, 1 bulan',['bh'])},
 
 'stats-non':()=>{const mp=L('mp'),sw=L('sw'),stt=L('st'),bl=L('bl');let v,l;
 if(mp&&Array.isArray(mp.fee_histogram)&&mp.fee_histogram.length){const hg=mp.fee_histogram,k=Math.ceil(hg.length/30);v=[];l=[];for(let i=0;i<hg.length;i+=k){const g=hg.slice(i,i+k);v.push(g.reduce((s,x)=>s+x[1],0)/1e3);l.push(Math.round(g[0][0])+' sat/vB')}v.reverse();l.reverse()}
@@ -713,7 +760,7 @@ S('Mempool by vBytes (sat/vByte)',ch(v?bars([v],[C[1]],220,l):NA),'kvB per fee r
 (wait||msA?S('Mempool size (MvB)',ch(msA?line([msA.map(x=>x.mempool_byte_weight/4e6)],[C[2]],220,msA.map(x=>hm(x.added))):NA),'2 jam terakhir',['st']):'')+
 S('Transaction vBytes per second (vB/s)',ch(vsA?line([vsA.map(x=>x.vbytes_per_second)],[C[1]],220,vsA.map(x=>hm(x.added))):NA),'2 jam terakhir',['st'])+
 S('Transactions per block',ch(bk?bars([bk.map(b=>b.tx_count)],[C[2]],220,bk.map(b=>'#'+b.height)):NA),'12 block terbaru',['bl'])+
-S('Block sizes and weights',ch(swOk?line([sw.sizes.map(x=>x.avgSize/1e6),sw.weights.map(x=>x.avgWeight/1e6)],[C[0],C[1]],220,sw.sizes.map(x=>dt(x.timestamp))):NA)+lg([['Size (MB)',C[0]],['Weight (MWU)',C[1]]]),'1 bulan',['sw'])},
+S('Block sizes and weights',ch(swSvg(sw))+lg([['Size (MB)',C[0]],['Weight (MWU)',C[1]]]),'1 bulan',['sw'])},
 
 'stats-ln':()=>{const lh0=L('lh'),lt=L('ll'),x=lt&&lt.latest,hs=Array.isArray(lh0)&&lh0.length>1,lh=hs?lh0.slice().sort((a,b)=>new Date(a.added)-new Date(b.added)):null,lb=hs&&lh.map(y=>dt(new Date(y.added).getTime()));
 const rk=(a,fn)=>Array.isArray(a)&&a.length?a.slice(0,10).map(fn):null;
