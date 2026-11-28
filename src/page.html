@@ -294,6 +294,45 @@ select.cs{height:34px;margin-right:2px;padding:0 20px 0 8px;font-size:12px;backg
 .bk.pb.new{animation:pbNew .9s ease both}
 @keyframes pbGone{from{flex-grow:1;flex-basis:128px;min-width:128px;margin-right:0;opacity:1}to{flex-grow:0;flex-basis:0;min-width:0;margin-right:-14px;opacity:0}}
 @keyframes pbNew{from{flex-grow:0;flex-basis:0;min-width:0;margin-left:-14px;opacity:0}to{flex-grow:1;flex-basis:128px;min-width:128px;margin-left:0;opacity:1}}
+
+/* fee-patch v4 */
+:root{--tH:#0ea860;--tM:#cf8e1d;--tL:#e07b3c;--tN:#c4575f;--fc:#e0457b}
+.t0{--tc:var(--tN)}.t1{--tc:var(--tL)}.t2{--tc:var(--tM)}.t3{--tc:var(--tH)}
+.pb .t0{--tc:var(--tN)}
+
+/* tile Transaction fee */
+.tiers{gap:14px}
+.tiers>div.tl{container-type:inline-size;display:flex;flex-direction:column;justify-content:space-between;gap:0;padding:16px 18px 14px;border-radius:8px;border:1px solid color-mix(in srgb,var(--c) 30%,var(--ln));background:color-mix(in srgb,var(--c) 13%,var(--bg2))}
+.tiers>div.tl::before,.tiers>div.tl::after{display:none}
+.tl .tp,.tl .ts{display:inline-flex;align-items:center;height:26px;padding:0 16px;border-radius:99px;background:var(--c);color:#fff;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.tl .tp{align-self:flex-start}
+.tl .tn{display:block;margin:10px 0 0;font-size:min(60px,calc(86cqi / (var(--l) * .62)));font-weight:600;line-height:1.02;letter-spacing:-.02em;color:var(--hd)}
+.tl .tr{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px}
+.tl .tu{font-size:15px;font-weight:500;color:var(--hd)}
+.tl .tf{display:flex;flex-wrap:wrap;gap:4px 0;margin-top:12px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--c) 32%,var(--ln));font-size:11.5px;line-height:1.25;color:var(--mu)}
+.tl .tf span{padding:0 9px;border-left:2px solid var(--c);text-transform:uppercase}
+.tl .tf span:first-child{padding-left:0;border-left:0}
+.tl .tf em{font-style:normal;font-weight:600;color:var(--hd);text-transform:none}
+.tl .tf em.u{text-transform:uppercase}
+@media(max-width:600px){.tiers{grid-template-columns:minmax(0,1fr)}}
+
+/* kartu Unconfirmed Transaction Data mengisi tinggi kartu di sebelahnya */
+.s:has(.mpc) .sb{display:flex;flex-direction:column}
+.s:has(.mpc) .mpc{flex:1;display:flex;flex-direction:column}
+.s:has(.mpc) .mpc .ch{flex:1;display:flex;align-items:center}
+.s:has(.mpc) .mpc .ch .cc{width:100%}
+
+/* detail block (Pending Transaction) */
+.obg{grid-template-columns:minmax(0,340px) minmax(0,1fr)}
+.kv .szd{flex:1;min-width:0;margin-left:18px;text-align:center}
+.szb{display:grid;place-items:center;height:22px;border-radius:4px;background:linear-gradient(90deg,#1e7bff,#8b3cf0);color:#fff;font-size:12.5px;font-weight:600}
+.fcw .pt{margin-bottom:6px}
+.fc{display:block;width:100%;height:auto;overflow:visible;color:var(--tx)}
+.fc .gl{stroke:currentColor;opacity:.18;stroke-dasharray:3 4}
+.fc .yt,.fc .xt{fill:var(--mu);font-size:11px;font-family:inherit}
+.fc .pv{fill:var(--hd);font-size:11.5px;font-weight:500;font-family:inherit}
+.fc .ar{fill:var(--fc);opacity:.95}
+.fc .dt{fill:#e8394d;stroke:#fff;stroke-width:1}
 </style></head><body>
 <a class="skip" href="#app">Lewati ke konten</a>
 <header><div class="bar"><a class="logo" href="#fee" aria-label="__SITE_NAME__"><img src="/asset/logo" alt="__SITE_NAME__" width="270" height="90" decoding="async"></a><nav id="nv" aria-label="Menu utama"><a href="#fee" data-r="fee">Fee</a><a href="#mining" data-r="mining">Mining</a><div class="dd"><button type="button" aria-haspopup="true" aria-expanded="false">Stats ▾</button><div class="sub"><a href="#stats-non" data-r="stats-non">On-chain</a><a href="#stats-ln" data-r="stats-ln">Lightning</a></div></div><a href="#explorer" data-r="explorer">Explorer</a><a href="#konverter" data-r="konverter">Konverter</a><a href="#kontak" data-r="kontak">Kontak</a></nav><form class="gs" id="gsf" role="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input id="gs" type="search" placeholder="Address / TXID / block…" aria-label="Cari address, TXID, block hash atau block height" autocomplete="off" autocapitalize="off" spellcheck="false"></form><div class="act"><button id="fs" class="ib" type="button" aria-label="Layar penuh"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button><select id="cu" class="cs" aria-label="Mata uang lokal"><option value="usd">USD</option></select><button id="th" class="ib" type="button" aria-label="Ganti tema"><svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg><span class="tn">Ganti tema</span></button><button id="mb" class="ib" type="button" aria-label="Menu" aria-expanded="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h12M3 18h18"/></svg></button></div></div><div class="tk"><div id="tk" aria-live="off"></div></div></header>
@@ -394,17 +433,18 @@ if(!r[CUR])CUR=r.usd?'usd':ks[0];sel.value=CUR};
 const mny=(v,c)=>{const dg=v>=100?0:v>=1?2:v>=.01?3:4;
 if(c==='usd')return '$'+v.toLocaleString('id-ID',{minimumFractionDigits:v>=1?2:dg,maximumFractionDigits:v>=1?2:dg});
 try{return new Intl.NumberFormat('id-ID',{style:'currency',currency:c.toUpperCase(),minimumFractionDigits:dg,maximumFractionDigits:dg}).format(v)}catch(e){return f2(v,dg)+' '+c.toUpperCase()}};
-const feeRows=sat=>{const r=(L('rates')||{}).rates||{},up=r.usd||(L('all')||{}).price||0;
-let h=`<div><dt>SATS</dt><dd>${f(sat)} <small>sats</small></dd></div>`;
-if(up>0){h+=`<div><dt>USD</dt><dd>${mny(sat/1e8*up,'usd')}</dd></div>`;
-if(CUR!=='usd'&&r[CUR]>0)h+=`<div><dt>${esc(CUR.toUpperCase())}</dt><dd>${mny(sat/1e8*r[CUR],CUR)}</dd></div>`}
-return `<dl class="fx">${h}</dl>`};
-const tiersH=()=>{const q=FE();if(!q)return NA;return [['No Priority',q.economyFee,'#8b91a3','economy'],['Low',q.hourFee,C[2],'~60 min'],['Medium',q.halfHourFee,C[1],'~30 min'],['High',q.fastestFee,C[0],'next block']].reverse().map(([n,v,c,s])=>`<div style="--c:${c}"><span class="k">${n}</span><b>${f2(v)}<small>sat/vB</small></b><span class="d">${s}</span>${feeRows(Math.ceil(v*TXV))}</div>`).join('')};
+const feeFoot=sat=>{const r=(L('rates')||{}).rates||{},up=r.usd||(L('all')||{}).price||0;
+let h=`<span>SATS: <em class="u">${f(sat)} sats</em></span>`;
+if(up>0){h+=`<span>USD: <em>${mny(sat/1e8*up,'usd')}</em></span>`;
+if(CUR!=='usd'&&r[CUR]>0)h+=`<span>${esc(CUR.toUpperCase())}: <em>${mny(sat/1e8*r[CUR],CUR)}</em></span>`}
+return `<div class="tf">${h}</div>`};
+const TIERC=['#0ea860','#cf8e1d','#e07b3c','#c4575f'];
+const tiersH=()=>{const q=FE();if(!q)return NA;return [['No Priority',q.economyFee,'var(--tN)','economy'],['Low',q.hourFee,'var(--tL)','~60 min'],['Medium',q.halfHourFee,'var(--tM)','~30 min'],['High',q.fastestFee,'var(--tH)','next block']].reverse().map(([n,v,c,s])=>{const t=f2(v);return `<div class="tl" style="--c:${c}"><span class="tp">${n}</span><div><strong class="tn" style="--l:${Math.max(3,t.length)}">${t}</strong><div class="tr"><span class="tu">sat/vB</span><span class="ts">${s}</span></div></div>${feeFoot(Math.ceil(v*TXV))}</div>`}).join('')};
 
 const rateAt=(fr,p)=>{if(!Array.isArray(fr)||fr.length<2)return null;const n=fr.length,qs=n===7?[0,.1,.25,.5,.75,.9,1]:fr.map((_,i)=>i/(n-1)),q=1-p;let i=0;while(i<n-2&&q>qs[i+1])i++;
 const t=(q-qs[i])/((qs[i+1]-qs[i])||1),a=Math.max(.05,fr[i]),b=Math.max(.05,fr[i+1]);return Math.exp(Math.log(a)*(1-t)+Math.log(b)*t)};
 const tierOf=(r,q)=>r>=q.fastestFee?3:r>=q.halfHourFee?2:r>=q.hourFee?1:0;
-const TC=['#8b91a3','var(--ok)','var(--a2)','var(--ac)'],TN=['Below Low','Low','Medium','High'];
+const TC=['var(--tN)','var(--tL)','var(--tM)','var(--tH)'],TN=['No Priority','Low','Medium','High'];
 
 const comp=(b,q)=>{const c=[0,0,0,0];for(let j=0;j<100;j++){const r=rateAt(b.feeRange,(j+.5)/100);c[r!=null&&q?tierOf(r,q):0]++}return c};
 const PB={tip:null,first:'',ghost:'',at:0};
@@ -419,23 +459,31 @@ PB.first=cs[0].replace(' new"','"');
 return (an?PB.ghost:'')+cs.join('')};
 const usdF=v=>'$'+v.toLocaleString('id-ID',{minimumFractionDigits:v<10?2:0,maximumFractionDigits:v<10?2:0});
 
-const ladder=(fr,q)=>{const n=fr.length,names=n===7?['Min','10%','25%','Median','75%','90%','Max']:fr.map((_,k)=>Math.round(k/(n-1)*100)+'%');
-const lo=Math.min(...fr),hi=Math.max(...fr),vmin=Math.max(.05,lo*.6),vmax=Math.max(hi,vmin*1.5),lv=Math.log(vmin),sp=Math.log(vmax)-lv;
-const pos=v=>Math.max(0,Math.min(1,(Math.log(Math.max(v,vmin))-lv)/sp));
-const rows=fr.map((v,k)=>[names[k],v]).reverse().map(([nme,v])=>`<div class="lr"><span>${nme}</span><em><u style="--w:${Math.max(2,pos(v)*100).toFixed(1)}%;--c:${TC[q?tierOf(v,q):0]}"></u></em><b>${f2(v,v<10?2:1)}</b></div>`).join('');
-const tk=q?[['L',q.hourFee,1],['M',q.halfHourFee,2],['H',q.fastestFee,3]].filter(t=>t[1]>=vmin&&t[1]<=vmax).map(([l,v,k])=>`<i style="left:${(pos(v)*100).toFixed(1)}%;--c:${TC[k]}">${l}</i>`).join(''):'';
-return `<div class="lad">${rows}${tk?`<div class="lr tkr"><span>Tier</span><em>${tk}</em><b></b></div>`:''}</div>`};
-const obHtml=i=>{const m=L('mb'),q=FE(),pr=(L('all')||{}).price;if(!Array.isArray(m)||!m[i])return '';const b=m[i],fr=Array.isArray(b.feeRange)&&b.feeRange.length>1?b.feeRange:null;
+const fcN=(v,a,b)=>v.toLocaleString('id-ID',{minimumFractionDigits:a,maximumFractionDigits:b==null?a:b});
+const fcAx=v=>v<10?fcN(v,2):v<100?fcN(v,1):fcN(v,0);
+const fcPt=v=>v<1?fcN(v,3):v<10?fcN(v,2):v<100?fcN(v,1):fcN(v,0);
+const fcChart=fr=>{const W=760,H=300,L0=46,R0=16,T0=28,B0=28,iw=W-L0-R0,ih=H-T0-B0;
+const mx=Math.max(...fr),mn=Math.max(.01,Math.min(...fr)),lo=Math.pow(10,Math.floor(Math.log10(mn))),hi=Math.max(mx,lo*2),l0=Math.log(lo),sp=Math.log(hi)-l0;
+const X=p=>L0+p/100*iw,Y=v=>T0+ih*(1-(Math.log(Math.min(hi,Math.max(lo,v)))-l0)/sp);
+const val=p=>{const r=rateAt(fr,1-p/100);return r==null?lo:Math.min(hi,Math.max(lo,r))};
+let d='';for(let p=0;p<=100;p++)d+=(p?'L':'M')+X(p).toFixed(1)+' '+Y(val(p)).toFixed(1);
+const area=d+'L'+X(100).toFixed(1)+' '+(T0+ih)+'L'+X(0).toFixed(1)+' '+(T0+ih)+'Z';
+const ys=[];for(let t=lo;t<hi*.9;t*=10)ys.push(t);ys.push(hi);
+const grid=ys.map(t=>`<line class="gl" x1="${L0}" x2="${W-R0}" y1="${Y(t).toFixed(1)}" y2="${Y(t).toFixed(1)}"/><text class="yt" x="${L0-8}" y="${(Y(t)+4).toFixed(1)}" text-anchor="end">${fcAx(t)}</text>`).join('');
+const xs=[10,20,30,40,50,60,70,80,90,100].map(p=>`<text class="xt" x="${X(p).toFixed(1)}" y="${H-8}" text-anchor="middle">${p}</text>`).join('');
+const pts=[10,20,30,40,50,60,70,80,90,100].map(p=>{const v=val(p),x=X(p).toFixed(1),y=Y(v).toFixed(1);return `<g><title>${fcPt(v)} sat/vB</title><circle class="dt" cx="${x}" cy="${y}" r="3.2"/><text class="pv" x="${x}" y="${(Y(v)-9).toFixed(1)}" text-anchor="${p===100?'end':'middle'}">${fcPt(v)}</text></g>`}).join('');
+return `<svg class="fc" viewBox="0 0 ${W} ${H}" role="img" aria-label="Fee rate distribution">${grid}<path class="ar" d="${area}"/>${xs}${pts}</svg>`};
+const obHtml=i=>{const m=L('mb'),pr=(L('all')||{}).price;if(!Array.isArray(m)||!m[i])return '';const b=m[i],fr=Array.isArray(b.feeRange)&&b.feeRange.length>1?b.feeRange:null;
 const row=(k,v)=>v?`<div><dt>${k}</dt><dd>${v}</dd></div>`:'';
 const usd=sat=>pr&&sat!=null?`<span class="usd">${usdF(sat/1e8*pr)}</span>`:'';
-const c=comp(b,q),ord=[3,2,1,0].filter(k=>c[k]);
+const sz=b.blockSize!=null?f2(b.blockSize/1e6,2)+' MB':f2(b.blockVSize/1e6,2)+' MvB';
 return `<div class="obh"><h3>${PBL(i)}<small>~${(i+1)*10} min</small></h3><button type="button" class="obx">Tutup</button></div><div class="obg"><dl class="kv">`+
-row('Median fee',`~${f2(b.medianFee,1)} <small>sat/vB</small>`+usd(b.medianFee*140)+(pr?' <small>/ 140 vB</small>':''))+
-row('Fee span',fr?`${f2(fr[0],2)} – ${f2(fr[fr.length-1],1)} <small>sat/vB</small>`:'')+
+row('Median fee',`~${f2(b.medianFee,1)} <small>sat/vB</small>`+usd(b.medianFee*140))+
+row('Fee span',fr?`${f2(fr[0],2)} - ${f2(fr[fr.length-1],0)} <small>sat/vB</small>`:'')+
 row('Total fees',b.totalFees!=null?`${f2(b.totalFees/1e8,3)} <small>BTC</small>`+usd(b.totalFees):'')+
 row('Transactions',f(b.nTx))+
-row('Size',`${b.blockSize!=null?f2(b.blockSize/1e6,2)+' MB <small>· ':'<small>'}${f2(b.blockVSize/1e6,2)} MvB</small><div class="fb" style="--f:${Math.min(100,b.blockVSize/1e4)|0}%"><u></u></div>`)+
-`</dl><div>`+(fr?`<p class="pt">Fee rate per percentile · sat/vB, skala log</p>${ladder(fr,q)}<p class="pt" style="margin-top:24px">Komposisi tier (perkiraan)</p><div class="cmp">${ord.map(k=>`<i style="--n:${c[k]};--tc:${TC[k]}"></i>`).join('')}</div>${lg(ord.map(k=>[TN[k]+' '+c[k]+'%',TC[k]]))}`:'<p class="na">Data percentile belum tersedia untuk block ini.</p>')+`</div></div>`};
+`<div><dt>Size</dt><dd class="szd"><div class="szb">${sz}</div></dd></div>`+
+`</dl><div class="fcw">`+(fr?`<p class="pt">Fee distribution · sat/vB</p>${fcChart(fr)}`:'<p class="na">Data fee belum tersedia untuk block ini.</p>')+`</div></div>`};
 let OB=-1,OBL=0;
 function applyOB(anim){const bl=$('bl'),ob=$('ob'),obi=$('obi');if(!bl||!ob||!obi)return;const ks=[...bl.querySelectorAll('.bk:not(.gone)')];if(OB>=ks.length)OB=-1;
 ks.forEach((k,i)=>k.setAttribute('aria-expanded',String(i===OB)));if(OB>=0)OBL=OB;
@@ -487,7 +535,7 @@ const FEEL=[1,2,3,4,5,6,8,10,12,15,20,30,40,50,60,70,80,90,100,125,150,175,200,2
 const mpVs=x=>{if(Array.isArray(x.vsizes)&&x.vsizes.length>1)return x.vsizes.map(v=>+v||0);const a=FEEL.map(l=>x['vsize_'+l]);return a.some(v=>v!=null)?a.map(v=>+v||0):null};
 const mpUc=x=>num(x.unconfirmed_transactions!=null?x.unconfirmed_transactions:x.count);
 const mpCol=(k,m)=>{const S=[[85,125,0],[191,125,18],[188,74,52],[185,37,75]],p=(m>1?k/(m-1):0)*(S.length-1),i=Math.min(S.length-2,Math.floor(p)),u=p-i,a=S[i],b=S[i+1];return 'rgb('+a.map((c,j)=>Math.round(c+(b[j]-c)*u)).join()+')'};
-const mpArea=pts=>{const n=pts.length,h=230,vs=pts.map(mpVs),m=Math.max(...vs.map(a=>a.length)),tot=vs.map(a=>a.reduce((s,v)=>s+v,0)/1e6),mx=Math.max(...tot)*1.06||1,X=i=>40+i/(n-1)*554,Y=v=>h-18-v/mx*(h-28),base=new Array(n).fill(0);let ps='';
+const mpArea=pts=>{const n=pts.length,h=280,vs=pts.map(mpVs),m=Math.max(...vs.map(a=>a.length)),tot=vs.map(a=>a.reduce((s,v)=>s+v,0)/1e6),mx=Math.max(...tot)*1.06||1,X=i=>40+i/(n-1)*554,Y=v=>h-18-v/mx*(h-28),base=new Array(n).fill(0);let ps='';
 for(let k=m-1;k>=0;k--){const lo=base.slice(),hi=vs.map((a,i)=>lo[i]+(a[k]||0)/1e6),col=mpCol(k,m);
 ps+=`<path d="M${X(0)} ${Y(hi[0])}${hi.map((v,i)=>i?`L${X(i)} ${Y(v)}`:'').join('')}${lo.map((_,i)=>`L${X(n-1-i)} ${Y(lo[n-1-i])}`).join('')}Z" fill="${col}" stroke="${col}" stroke-width=".5"/>`;for(let i=0;i<n;i++)base[i]=hi[i]}
 const lb=pts.map(p=>hm(p.added));
@@ -517,7 +565,7 @@ S('Transaction fee',`<div class="tiers" id="tz">${tiersH()}</div>`,'Estimasi unt
 S('Unconfirmed Transaction Data',mpH(),'',['all','mp','st'])+
 S('Recent transaction',Array.isArray(rt)&&rt.length?tbl(['TXID','Amount','Size','Fee'],rt.slice(0,8).map(t=>[tl(t.txid),f2(t.value/1e8,4)+' BTC',f(t.vsize)+' vB',f2(t.fee/t.vsize,1)+' sat/vB'])):'','',['rt'])+
 S('Recent replacements',rpl?tbl(['Replacement','Replaced','Old rate','New rate'],rpl):'<p class="na">Belum ada RBF replacement terbaru.</p>','',['rp'])+
-S('Fee history (24h)',hr?ch(line([hr.map(r=>r.high),hr.map(r=>r.medium),hr.map(r=>r.low)],[C[0],C[1],C[2]],220,hr.map(r=>hm(r.t))))+lg([['High',C[0]],['Medium',C[1]],['Low',C[2]]]):'<p class="na">Belum ada data.</p>','',['fh'])+
+S('Fee history (24h)',hr?ch(line([hr.map(r=>r.high),hr.map(r=>r.medium),hr.map(r=>r.low)],[TIERC[0],TIERC[1],TIERC[2]],220,hr.map(r=>hm(r.t))))+lg([['High',TIERC[0]],['Medium',TIERC[1]],['Low',TIERC[2]]]):'<p class="na">Belum ada data.</p>','',['fh'])+
 S('Block fees chart',ch(bv?bars([bv],[C[0]],220,dl):NA),'Avg fee per block (BTC), 1 bulan',['bf'])+
 S('Block fees vs subsidy',ch(bv?bars([bv.map(()=>3.125),bv],[C[1],C[0]],220,dl):NA)+lg([['Subsidy 3,125 BTC',C[1]],['Fee',C[0]]]),'',['bf'])},
 
